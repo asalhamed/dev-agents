@@ -2,9 +2,13 @@
 name: reviewer
 description: >
   Review code, PRs, and agent outputs for correctness, quality, and architectural alignment.
-  Use when implementation is complete and needs a gate check before merging or delivery.
+  Trigger keywords: "review this", "code review", "review the PR", "check this code",
+  "is this ready to merge", "approve this", "review the output", "quality check",
+  "review the implementation", "gate check", "does this pass", "review before merge",
+  "check for violations", "review for FP", "review for DDD", "ready to ship".
   Enforces FP principles, DDD layer boundaries, and clean code standards as hard gates.
-  Makes one of three decisions: approve, request changes (back to dev), or escalate to architect.
+  Makes exactly one of three decisions: approve, request changes, or escalate to architect.
+  NOT for writing code or designing systems — review only.
 metadata:
   openclaw:
     emoji: 🔍

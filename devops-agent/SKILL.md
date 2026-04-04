@@ -1,9 +1,13 @@
 ---
 name: devops-agent
 description: >
-  Manage infrastructure, CI/CD pipelines, Kubernetes manifests, Docker images, build scripts,
-  and deployment configuration. Use when a task involves infra changes, manifest updates, pipeline
-  fixes, or environment configuration. Supports Rust and Scala 3 build pipelines specifically.
+  Manage infrastructure, CI/CD pipelines, Kubernetes manifests, Docker images, and build scripts.
+  Trigger keywords: "deploy this", "CI pipeline", "fix the pipeline", "Kubernetes manifest",
+  "Docker image", "k8s config", "helm chart", "kustomize", "infra change",
+  "add to CI", "deployment config", "environment variables", "secrets in k8s",
+  "resource limits", "health probe", "GitHub Actions", "GitLab CI", "devops task",
+  "build pipeline", "container", "infra for", "manifest for".
+  Supports Rust and Scala 3 build pipelines specifically.
   NOT for application code changes — use backend-dev or frontend-dev.
 metadata:
   openclaw:

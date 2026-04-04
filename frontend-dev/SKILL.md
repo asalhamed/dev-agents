@@ -1,10 +1,13 @@
 ---
 name: frontend-dev
 description: >
-  Implement frontend features, UI components, pages, and client-side logic. Use when a tech-lead
-  assigns a frontend task. Supports Rust/Leptos, Vue/Nuxt, React/Next.js, Svelte, and plain HTML.
-  Strong focus on functional components, unidirectional data flow, pure rendering functions, and
-  clean component boundaries aligned with DDD (UI as thin adapter over domain events/commands).
+  Implement frontend features, UI components, pages, and client-side logic.
+  Trigger keywords: "build the UI", "implement the component", "frontend task", "add the page",
+  "Vue component", "React component", "Leptos component", "Nuxt page", "Svelte component",
+  "build the form", "implement the view", "frontend code", "client-side", "UI for",
+  "build the screen", "add the button", "implement the layout", "frontend implementation".
+  Supports Rust/Leptos, Vue/Nuxt, React/Next.js, Svelte, and plain HTML.
+  Strong focus on functional components, unidirectional data flow, and pure rendering.
   NOT for backend APIs, infrastructure, or design decisions.
 metadata:
   openclaw:

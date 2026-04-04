@@ -2,9 +2,13 @@
 name: architect
 description: >
   Design systems, make architectural decisions, and produce ADRs (Architecture Decision Records).
-  Use when a new feature, service, or integration needs a design review before implementation begins,
-  when a tech-lead or reviewer escalates a design concern, or when evaluating trade-offs between
-  architectural approaches. NOT for small bug fixes or trivial changes.
+  Trigger keywords: "design this", "architecture for", "how should we model", "what's the right approach",
+  "ADR for", "bounded context", "domain model", "system design", "tech decision",
+  "design review", "architect this", "before we build", "design the", "how should X talk to Y",
+  "is this the right design", "design escalation", "architectural concern".
+  Use when a new feature, service, or integration needs design before implementation begins,
+  when reviewer or tech-lead escalates a design concern, or when evaluating trade-offs.
+  NOT for bug fixes, trivial changes, or tasks with an existing clear pattern.
 metadata:
   openclaw:
     emoji: 🏛️

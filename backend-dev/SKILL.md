@@ -2,10 +2,14 @@
 name: backend-dev
 description: >
   Implement backend features, fix bugs, write and modify server-side code, APIs, services,
-  database logic, and event/message handlers. Use when a tech-lead assigns a backend task
-  from an approved ADR or task breakdown. Supports Rust, Scala 3, Scala 2, TypeScript, Go,
-  and other backend stacks. Strong focus on functional programming, DDD, and clean code.
-  NOT for frontend work, infrastructure/K8s manifests (use devops-agent), or design decisions (use architect).
+  database logic, and event/message handlers.
+  Trigger keywords: "implement this", "build the API", "write the service", "backend task",
+  "add this endpoint", "fix this bug", "implement the aggregate", "write the domain logic",
+  "Scala implementation", "Rust implementation", "implement the repository", "write the handler",
+  "add the use case", "implement the event", "backend code for", "server-side".
+  Supports Rust, Scala 3, Scala 2, TypeScript, Go, and other backend stacks.
+  Strong focus on functional programming, DDD, and clean code.
+  NOT for frontend work, K8s/infra (use devops-agent), or design decisions (use architect).
 metadata:
   openclaw:
     emoji: 🔧

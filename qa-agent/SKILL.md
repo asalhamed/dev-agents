@@ -1,11 +1,14 @@
 ---
 name: qa-agent
 description: >
-  Write, run, and evaluate tests for backend and frontend code. Generate test plans, write unit
-  and integration tests, check coverage, and report results. Use after implementation is complete
-  and before the reviewer. Supports Rust, Scala 3/2, TypeScript, and other stacks.
-  Enforces FP testing principles: test behavior not implementation, pure unit tests by default,
-  integration tests only where needed.
+  Write, run, and evaluate tests for backend and frontend code.
+  Trigger keywords: "write tests", "add tests", "test coverage", "QA this", "verify this works",
+  "test the implementation", "check coverage", "run the tests", "test plan",
+  "unit tests for", "integration tests", "test the aggregate", "test this feature",
+  "coverage report", "tests are missing", "qa report", "test suite", "write specs".
+  Use after implementation is complete and before the reviewer.
+  Supports Rust, Scala 3/2, TypeScript, and other stacks.
+  Enforces FP testing: test behavior not implementation, pure unit tests by default.
 metadata:
   openclaw:
     emoji: 🧪

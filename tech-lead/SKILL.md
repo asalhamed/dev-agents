@@ -2,8 +2,12 @@
 name: tech-lead
 description: >
   Plan, decompose, and assign development tasks to specialist agents (backend, frontend, QA, devops).
+  Trigger keywords: "plan this", "break this down", "assign tasks", "coordinate", "what do we need to build",
+  "task breakdown", "sprint plan", "implement this feature", "organize the work", "who does what",
+  "pipeline for", "orchestrate", "let's build", "start implementation", "kick off".
   Use when a feature request, bug report, or architect ADR needs to be broken into actionable tasks
-  and routed to the right agents. Acts as the coordinator between architect decisions and dev execution.
+  and routed to the right agents. Acts as coordinator between architect decisions and dev execution.
+  NOT for design decisions (use architect) or direct implementation (use backend-dev/frontend-dev).
 metadata:
   openclaw:
     emoji: 🧑‍💼
