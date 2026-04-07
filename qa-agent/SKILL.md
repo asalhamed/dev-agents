@@ -267,26 +267,13 @@ Before writing tests, produce a brief plan:
 - Note any pre-existing failures — **flag, do not fix silently**
 
 ### 4. QA Report
+Produce your report using the exact format defined in `shared/contracts/qa-report.md`.
+Every required field must be filled — the reviewer will reject incomplete reports.
 
-```markdown
-## QA Report
-
-**Suite result:** ✅ PASS / ❌ FAIL
-**Tests added:** [N new tests]
-**Coverage:** [before X%] → [after Y%] (threshold: Z%)
-
-**New tests:**
-- `[test name]` — [domain behavior it verifies]
-
-**Domain invariants now tested:**
-- [list]
-
-**Pre-existing failures (not caused by this change):**
-- `[test name]` — [flagging for awareness only]
-
-**Coverage gaps:**
-- [paths not covered and why — e.g., "error path requires real DB"]
-```
+Key fields the reviewer hard-gates on:
+- Coverage table with before/after/threshold
+- Domain Invariants Verified table (cannot be empty)
+- FP Testing Compliance checklist
 
 ## Escalation Rules
 

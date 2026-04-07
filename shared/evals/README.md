@@ -14,14 +14,14 @@ evals/
 │   └── eval-003-cross-context-boundary.md
 ├── tech-lead/
 │   ├── eval-001-task-decomposition.md
-│   └── eval-002-blocked-dependency.md
+│   └── eval-002-blocker-escalation.md
 ├── backend-dev/
 │   ├── eval-001-domain-layer-purity.md
 │   ├── eval-002-scala3-aggregate.md
 │   └── eval-003-rust-value-object.md
 ├── frontend-dev/
 │   ├── eval-001-pure-component.md
-│   └── eval-002-no-business-logic-in-component.md
+│   └── eval-002-contract-mismatch.md
 ├── qa-agent/
 │   ├── eval-001-domain-invariant-coverage.md
 │   └── eval-002-no-impl-mirroring.md

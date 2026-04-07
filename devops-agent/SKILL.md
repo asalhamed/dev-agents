@@ -263,27 +263,13 @@ For blast-radius > one service → confirm with tech-lead before proceeding.
 - [ ] Rollback plan documented
 
 ### 4. Output Summary
+Produce your output using the exact format defined in `shared/contracts/devops-summary.md`.
+Every required field must be filled — the reviewer will reject incomplete summaries.
 
-```markdown
-## DevOps Change Summary
+The security checklist in the contract is a hard gate — the reviewer blocks on missing secrets checks.
 
-**Change type:** [CI / K8s manifest / Docker / Config / Secrets]
-**Blast radius:** [Pod / Service / Namespace / Cluster]
-**Additive or breaking:** [Additive (safe to merge) / Breaking (requires deploy window)]
-**Rollback plan:** [Exactly how to revert this change]
-
-**Files changed:**
-- `path/to/file` — [what changed and why]
-
-**Validation:**
-- [ ] Dry-run passed
-- [ ] No secrets in diff
-- [ ] Build verified
-- [ ] Probes and limits verified
-
-**Notes for reviewer:**
-- [Anything to watch for in staging/prod]
-```
+Before producing the summary, run `scripts/validate_manifests.sh` on the repo to catch
+mechanical issues automatically.
 
 ## Escalation Rules
 

@@ -88,7 +88,11 @@ Specify what each component/service exposes:
 Contracts are defined in terms of domain types, not infrastructure types.
 
 ### 6. Hand off to Tech Lead
-Pass the ADR + contracts to the `tech-lead` skill with a clear task summary.
+Produce your handoff using the exact format defined in `shared/contracts/architect-output.md`.
+Every required field must be filled. The tech-lead will validate your output against that contract
+and reject it if fields are missing.
+
+Pass the completed architect-output to the `tech-lead` skill.
 
 ## ADR Format
 

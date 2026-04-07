@@ -245,16 +245,11 @@ Minimum:
 - [ ] No hardcoded strings that belong in i18n (if project uses it)
 
 ### 6. Output Summary
-```markdown
-## Implementation Summary
+Produce your output using the exact format defined in `shared/contracts/implementation-summary.md`.
+Every required field must be filled — qa-agent and reviewer will reject incomplete summaries.
 
-**Task:** [What was asked]
-**Components:** [Names and paths]
-**State changes:** [Store/signal changes]
-**API integration:** [Endpoints consumed]
-**Tests:** [What was covered]
-**Notes:** [Anything reviewer should know]
-```
+For frontend tasks, the "Domain Model Changes" section can be "N/A — interface layer"
+but all other fields are still required.
 
 ## Escalation Rules
 | Situation | Action |

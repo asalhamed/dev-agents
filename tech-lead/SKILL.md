@@ -72,12 +72,15 @@ architect (if needed) → tech-lead (you)
   → reviewer
 ```
 
-Pass each agent:
+Pass each agent a task brief using the exact format defined in `shared/contracts/task-brief.md`.
+Every required field must be filled — agents will reject incomplete briefs.
+
+Each brief must include:
 - Their specific task slice (not the whole plan)
 - Reference to `../PRINCIPLES.md` (always)
 - Relevant file paths and context
-- The contract or interface they must implement or consume
-- Expected output format
+- The contract section from `shared/contracts/architect-output.md` they must implement
+- Which output contract they should produce (`implementation-summary` | `devops-summary` | `qa-report`)
 
 ### 3. Collect & Merge
 
@@ -111,6 +114,11 @@ Once all dev + QA tasks complete, produce a consolidated summary:
 **Open questions / risks:**
 - [Anything reviewer or architect should know]
 ```
+
+**Contract references:**
+- Validate each agent's output against: `shared/contracts/implementation-summary.md`, `shared/contracts/devops-summary.md`, or `shared/contracts/qa-report.md`
+- Your own handoff to reviewer includes the consolidated summary above
+- Reviewer will produce output per `shared/contracts/reviewer-decision.md` — read it to understand what comes back
 
 ## Escalation Rules
 

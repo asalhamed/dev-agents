@@ -230,36 +230,8 @@ Before marking done:
 - [ ] No dead code, no debug logs in production paths
 
 ### 5. Output Summary
-
-```markdown
-## Implementation Summary
-
-**Task:** [What was asked]
-**Layer(s) touched:** [domain / application / infrastructure / wiring]
-**Approach:** [What you did and why — 2-3 sentences]
-
-**Files changed:**
-- `path/to/file` — [what changed]
-
-**Domain model additions:**
-- Value Objects: [list]
-- Domain Events: [list]
-- Aggregate changes: [description]
-
-**Contracts implemented:**
-- [API endpoint or event topic] — [description]
-
-**Test results:**
-- Suite: ✅ PASS / ❌ FAIL
-- Coverage: [X%] (threshold: [Y%])
-
-**Principles applied:**
-- FP: [notable decisions]
-- DDD: [notable decisions]
-
-**Open questions / escalations:**
-- [Anything tech-lead or architect should know]
-```
+Produce your output using the exact format defined in `shared/contracts/implementation-summary.md`.
+Every required field must be filled — qa-agent and reviewer will reject incomplete summaries.
 
 ## Escalation Rules
 
