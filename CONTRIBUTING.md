@@ -78,6 +78,33 @@ Good evals test behavior, not exact output wording.
 - Test only the happy path — edge cases matter more
 - Require exact wording in output — test for presence of required fields/decisions
 
+## Divisions and Entry Points
+
+The team is organized into 4 divisions. Start at the right division to avoid rework:
+
+**Business Division** — use when you need to define *what* to build:
+- `product-owner` → feature requests, PRDs, prioritization
+- `business-analyst` → user stories, business rules, domain terms
+- `data-analyst` → success metrics, analytics instrumentation
+
+**Design Division** — use when you need to define *how it should look and behave*:
+- `ux-researcher` → user needs, personas, journey mapping
+- `ui-designer` → component specs, responsive layouts, design tokens
+- `api-designer` → REST/GraphQL contract design, OpenAPI specs
+
+**Engineering Division** — use for *building it*:
+- `architect` → domain modeling, bounded contexts, ADRs
+- `tech-lead` → task breakdown, pipeline coordination
+- dev agents → `backend-dev`, `frontend-dev`, `devops-agent`
+- quality → `qa-agent`, `reviewer`, `security-agent`, `perf-agent`, `db-migration`
+
+**Operations Division** — use *after shipping*:
+- `observability-agent` → verify instrumentation, alert rules, SLOs
+- `docs-agent` → generate/update API docs, ADR index, changelog
+
+For a full feature, the pipeline runs: Business → Design → Engineering → Operations.
+For a bug fix or small change, start at `tech-lead`.
+
 ## Principles
 
 Every contribution must respect `PRINCIPLES.md`:

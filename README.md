@@ -12,17 +12,41 @@ All agents operate under three non-negotiable principles — read [`PRINCIPLES.m
 | **Domain-Driven Design** | Bounded contexts, aggregates, domain events, ubiquitous language, layered architecture |
 | **Clean Code** | Names reveal intent, functions do one thing, no magic, no noise |
 
-## The Team
+## Agent Team (18 Agents)
 
-| Agent | Role | File |
-|-------|------|------|
-| 🏛️ `architect` | Design decisions, ADRs, domain modeling, contract definition | [`architect/SKILL.md`](architect/SKILL.md) |
-| 🧑‍💼 `tech-lead` | Task decomposition, pipeline orchestration, agent coordination | [`tech-lead/SKILL.md`](tech-lead/SKILL.md) |
-| 🔧 `backend-dev` | Backend implementation (Rust, Scala 3, Scala 2, TS, Go) | [`backend-dev/SKILL.md`](backend-dev/SKILL.md) |
-| 🎨 `frontend-dev` | Frontend implementation (Leptos, Vue/Nuxt, React, Svelte) | [`frontend-dev/SKILL.md`](frontend-dev/SKILL.md) |
-| 🧪 `qa-agent` | Test writing, coverage, QA reports | [`qa-agent/SKILL.md`](qa-agent/SKILL.md) |
-| 🚀 `devops-agent` | CI/CD, K8s manifests, Docker, infra | [`devops-agent/SKILL.md`](devops-agent/SKILL.md) |
-| 🔍 `reviewer` | Code review, quality gates, approve/reject/escalate | [`reviewer/SKILL.md`](reviewer/SKILL.md) |
+### Business Division
+| Agent | Role |
+|-------|------|
+| `product-owner` 📋 | PRDs, acceptance criteria, feature prioritization |
+| `business-analyst` 📊 | User stories, business rules, domain terms |
+| `data-analyst` 📈 | Success metrics, analytics instrumentation, A/B tests |
+
+### Design Division
+| Agent | Role |
+|-------|------|
+| `ux-researcher` 🔬 | User needs, personas, journey mapping |
+| `ui-designer` 🎨 | Component specs, design system, responsive layouts |
+| `api-designer` 📐 | REST/GraphQL contracts, OpenAPI specs |
+
+### Engineering Division
+| Agent | Role |
+|-------|------|
+| `architect` 🏛️ | Domain modeling, bounded contexts, ADRs |
+| `tech-lead` 🧑‍💼 | Task decomposition, pipeline coordination |
+| `backend-dev` 💻 | Domain logic, services, APIs (Rust, Scala 3, Go, TypeScript) |
+| `frontend-dev` 🖥️ | UI components, state management (Vue/Nuxt, React, Leptos) |
+| `devops-agent` 🚀 | K8s manifests, CI/CD, infrastructure |
+| `qa-agent` 🧪 | Behavioral tests, domain invariant coverage |
+| `reviewer` 🔍 | FP/DDD gate, coverage enforcement, final approval |
+| `security-agent` 🛡️ | Threat modeling, security scanning, OWASP review |
+| `db-migration` 🗄️ | Schema evolution, migration safety, rollback scripts |
+| `perf-agent` ⚡ | Benchmarks, profiling, N+1 detection |
+
+### Operations Division
+| Agent | Role |
+|-------|------|
+| `observability-agent` 📡 | Instrumentation audit, SLO validation, alert rules |
+| `docs-agent` 📝 | API docs, ADR index, changelogs |
 
 ## Pipeline
 
@@ -53,14 +77,21 @@ All agents operate under three non-negotiable principles — read [`PRINCIPLES.m
          ✅ Approve      🔁 Fix (→ dev)   🏛️ Escalate (→ architect)
 ```
 
-**When to start at architect:**
-- New services, integrations, cross-context features
-- Schema changes or new Kafka topics
-- Anything that affects bounded context boundaries
+## When to Start Where
 
-**When to start at tech-lead:**
-- Bug fixes, small tasks, single-file changes
-- Tasks with a clear, existing pattern to follow
+| Signal in the request | Start at |
+|---|---|
+| "what should we build", "feature idea", "roadmap" | product-owner |
+| "user needs", "persona", "usability" | ux-researcher |
+| "how should the API look", "endpoint design" | api-designer |
+| "new service", "schema change", "bounded context" | architect |
+| "security review", "threat model", "is this secure" | security-agent |
+| "migration", "schema change" (implementation) | db-migration |
+| "bug fix", "small task", "implement this" | tech-lead |
+| "performance issue", "slow", "benchmark" | perf-agent |
+| "documentation", "API docs", "changelog" | docs-agent |
+| "monitoring", "alerting", "are we logging" | observability-agent |
+| Unclear / ambiguous | tech-lead (will escalate if needed) |
 
 ## Stack Support
 
