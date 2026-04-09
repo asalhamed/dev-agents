@@ -238,3 +238,29 @@ Domain model expressed as ADTs (DDD + FP)
   → Each function does one thing, clearly (Clean Code)
   → Invalid states are unrepresentable by the type system (FP + DDD)
 ```
+
+---
+
+## Security Principles
+
+Security is a first-class concern, not an afterthought. Apply these principles across all agents.
+
+- **Security is a requirement, not a feature.** Threat model every ADR. The security-agent reviews every ADR before tech-lead decomposes it.
+- **Defense in depth.** Never rely on a single security control. Authentication + authorization + input validation + output encoding — all layers, always.
+- **Least privilege.** Every service, user, and token gets minimum required permissions. Default deny.
+- **Secrets never touch code.** No passwords, tokens, or keys in source code, ever. Use vault, environment injection, or sealed secrets.
+- **Validate at the boundary.** Never trust external input — including input from other internal services. Parse, validate, reject early.
+- **Fail securely.** When something goes wrong, fail closed (deny access) not open (allow access).
+- **Audit everything security-relevant.** Auth events, permission changes, data access — all logged with actor, resource, and timestamp.
+
+---
+
+## Product Principles
+
+Features exist to solve user problems. Keep this chain visible from requirements through delivery.
+
+- **Every feature must have measurable success criteria before work begins.** If we can't measure it, we can't know if it worked. The data-analyst defines metrics before the architect designs.
+- **User needs drive design decisions, not technical convenience.** The ux-researcher's findings are inputs to the architect, not afterthoughts.
+- **Acceptance criteria are in Given/When/Then format and are testable.** "Users should be able to..." is not acceptance criteria. "Given X, when Y, then Z" is.
+- **Business rules are domain rules.** They belong in the domain layer, expressed in ubiquitous language, not scattered across controllers and SQL queries.
+- **Scope creep is a pipeline smell.** If requirements expand after the architect has produced an ADR, stop. Go back to product-owner. Don't silently absorb scope.

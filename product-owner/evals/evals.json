@@ -1,4 +1,32 @@
 {
   "skill_name": "product-owner",
-  "evals": []
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We need to add notification preferences to the platform.",
+      "expected_output": "PRD with clear business objective, MoSCoW scope, Given/When/Then acceptance criteria, measurable success metrics",
+      "files": [],
+      "expectations": [
+        "Business objective: problem + audience + why now",
+        "MoSCoW scope with explicit Won't-have list",
+        "Acceptance criteria in Given/When/Then",
+        "SecurityAlert constraint captured as Must-have",
+        "Success metrics are measurable",
+        "Produces prd contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Prioritize: (1) dark mode, (2) bulk order export, (3) SSO login, (4) mobile app, (5) notification preferences. 2 engineers, 3 months.",
+      "expected_output": "Prioritized list with RICE or equivalent scoring, capacity constraint applied",
+      "files": [],
+      "expectations": [
+        "Uses RICE or equivalent structured prioritization",
+        "Rationale provided for each feature",
+        "Capacity constraint applied (2 engineers, 3 months)",
+        "Recommended order with explanation",
+        "Won't-do this cycle explicitly identified"
+      ]
+    }
+  ]
 }

@@ -1,4 +1,33 @@
 {
   "skill_name": "observability-agent",
-  "evals": []
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Audit this Rust service: uses println! for all logging, no /metrics endpoint, no health endpoints, no tracing setup.",
+      "expected_output": "Audit flagging all 4 gaps as blocking, specific recommendations per gap, FAIL verdict",
+      "files": [],
+      "expectations": [
+        "println! flagged — must use tracing crate with structured fields",
+        "No /metrics flagged as blocking — must expose Prometheus metrics",
+        "No health endpoints flagged — must add /health/live and /health/ready",
+        "No tracing flagged — must configure OTEL exporter",
+        "Overall verdict: FAIL",
+        "Produces observability-audit contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Audit alert rules for an order service. Current alerts: 'CPU > 80% for 5min'. No latency or error rate alerts.",
+      "expected_output": "Alert audit identifying missing SLO-based alerts, recommendations for RED metric alerts",
+      "files": [],
+      "expectations": [
+        "CPU alert noted as insufficient — not SLO-based",
+        "Missing: error rate > 1% alert",
+        "Missing: p99 latency alert",
+        "Missing: domain metric alert (orders_confirmed_total no increase)",
+        "Actionable recommendations",
+        "Produces observability-audit contract"
+      ]
+    }
+  ]
 }

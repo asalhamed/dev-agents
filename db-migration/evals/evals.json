@@ -1,4 +1,32 @@
 {
   "skill_name": "db-migration",
-  "evals": []
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add a non-nullable 'currency' column (VARCHAR(3)) to the 'order_items' table which currently has 2 million rows. The service must stay online during migration.",
+      "expected_output": "Expand-contract plan across 2 releases, up+down scripts, no downtime",
+      "files": [],
+      "expectations": [
+        "Identifies adding NOT NULL to existing table as a breaking change",
+        "Phase 1: add nullable column + backfill existing rows",
+        "Phase 2: add NOT NULL constraint after backfill confirmed",
+        "Both up and down scripts for each phase",
+        "Explicit rollback procedure",
+        "Produces migration-plan contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Rename the 'user_id' column to 'customer_id' in the orders table. The column is consumed by 2 services.",
+      "expected_output": "Migration plan identifying breaking change, dual-column strategy for zero-downtime rename",
+      "files": [],
+      "expectations": [
+        "Identifies this as a breaking change affecting 2 consumers",
+        "Proposes dual-column approach: add customer_id, copy data, update services one by one, drop user_id",
+        "Coordination requirement with consuming services noted",
+        "Up and down scripts present",
+        "Produces migration-plan contract"
+      ]
+    }
+  ]
 }

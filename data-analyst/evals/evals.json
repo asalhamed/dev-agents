@@ -1,4 +1,33 @@
 {
   "skill_name": "data-analyst",
-  "evals": []
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Define success metrics and instrumentation for the notification preferences feature. Business goal: reduce unsubscribes by 30%.",
+      "expected_output": "Measurement plan with primary/secondary/guardrail metrics and analytics event schema",
+      "files": [],
+      "expectations": [
+        "Primary metric: unsubscribe rate (target -30%)",
+        "Guardrail: SecurityAlert delivery rate must not drop",
+        "Analytics events defined: preference_updated, pause_activated, preference_page_viewed",
+        "Each event has name, trigger, properties, producer",
+        "Instrumentation split between backend-dev and frontend-dev",
+        "Produces measurement-plan contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design an A/B test comparing current 3-step checkout vs new 1-step checkout. Current abandonment: 65%.",
+      "expected_output": "A/B test design with hypothesis, primary metric, guardrail, sample size rationale, duration",
+      "files": [],
+      "expectations": [
+        "Hypothesis stated clearly",
+        "Primary metric: checkout completion rate",
+        "Guardrail: average order value must not decrease",
+        "Sample size rationale explained",
+        "Recommended test duration",
+        "Produces measurement-plan contract"
+      ]
+    }
+  ]
 }

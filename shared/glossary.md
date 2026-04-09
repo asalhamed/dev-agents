@@ -40,5 +40,24 @@ _Add project-specific domain terms below as they are defined in ADRs._
 
 ---
 
+## Cross-Cutting Terms
+
+| Term | Definition |
+|------|-----------|
+| **Threat Model** | A structured analysis of potential security threats against a system, using STRIDE or similar framework |
+| **Attack Surface** | The sum of all points where an attacker could try to enter or extract data from a system |
+| **Trust Boundary** | A point in a system where data crosses from one trust level to another (e.g., from internet to internal network) |
+| **User Persona** | A fictional but research-based representation of a user segment with goals, pain points, and behaviors |
+| **User Journey** | A step-by-step map of how a user interacts with a product to achieve a goal, including emotional state |
+| **Usability Requirement** | A measurable target for how easily users can accomplish tasks |
+| **PRD (Product Requirements Document)** | A document that defines what a feature should do, why it matters, and how success is measured |
+| **Acceptance Criterion** | A testable condition (Given/When/Then) that must be true for a feature to be considered complete |
+| **SLO (Service Level Objective)** | An internal target for service reliability (e.g., 99.9% availability over 28 days) |
+| **SLI (Service Level Indicator)** | A metric used to measure service reliability (e.g., successful requests / total requests) |
+| **Error Budget** | The allowed downtime or error rate before an SLO is breached (e.g., 43.2 minutes/month for 99.9% SLO) |
+| **Bounded Context Map** | A diagram showing bounded contexts and how they relate to each other |
+
+---
+
 _This glossary is maintained by the architect agent. When a new ADR introduces domain terms,
 they should be added here under "Project-Specific Terms"._

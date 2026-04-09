@@ -1,4 +1,31 @@
 {
   "skill_name": "business-analyst",
-  "evals": []
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Decompose the notification preferences PRD into user stories. Requirements: per-channel toggles, SecurityAlert minimum-one-channel rule, pause-all functionality.",
+      "expected_output": "INVEST-quality user stories, explicit business rules, domain terms identified for glossary",
+      "files": [],
+      "expectations": [
+        "At least 4 user stories (toggle, view, SecurityAlert constraint, pause)",
+        "Stories follow INVEST criteria",
+        "Business rules extracted: BR-001 SecurityAlert minimum one channel",
+        "Domain terms identified: NotificationCategory, NotificationChannel, NotificationPreference",
+        "Produces business-requirements contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Identify domain terms from: 'Users can pay for orders using credit cards. Payments can be refunded within 30 days. Disputed payments trigger a chargeback process.'",
+      "expected_output": "Domain terms with definitions, distinction between Refund and Chargeback",
+      "files": [],
+      "expectations": [
+        "Identifies: Payment, Refund, Dispute, Chargeback, CreditCard/PaymentMethod",
+        "Each term has a clear business-language definition",
+        "Distinction between Refund (merchant-initiated) and Chargeback (bank-initiated) noted",
+        "Terms marked for addition to shared/glossary.md",
+        "Produces business-requirements contract"
+      ]
+    }
+  ]
 }
