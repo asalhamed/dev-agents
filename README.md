@@ -50,31 +50,87 @@ All agents operate under three non-negotiable principles — read [`PRINCIPLES.m
 
 ## Pipeline
 
+### Full Flow (18 agents)
+
 ```
-                        ┌─────────────┐
-                        │  architect  │  ← entry for new features / design concerns
-                        └──────┬──────┘
-                               │ ADR + contracts
-                        ┌──────▼──────┐
-                        │  tech-lead  │  ← entry for small tasks / bug fixes
-                        └──────┬──────┘
-                               │ task breakdown
-              ┌────────────────┼────────────────┐
-       ┌──────▼──────┐  ┌──────▼──────┐  ┌──────▼──────┐
-       │ backend-dev │  │ frontend-dev│  │devops-agent │
-       └──────┬──────┘  └──────┬──────┘  └──────┬──────┘
-              └────────────────┼────────────────┘
-                               │ implementations
-                        ┌──────▼──────┐
-                        │  qa-agent   │
-                        └──────┬──────┘
-                               │ test results
-                        ┌──────▼──────┐
-                        │  reviewer   │
-                        └──────┬──────┘
-                               │
-                ┌──────────────┼──────────────┐
-         ✅ Approve      🔁 Fix (→ dev)   🏛️ Escalate (→ architect)
+  ┌──────────────┐
+  │product-owner │  ← "what should we build and why"
+  └──────┬───────┘
+         │ PRD
+    ┌────┼────────────┐
+┌───▼────────┐  ┌─────▼──────┐
+│business-   │  │data-analyst│
+│analyst     │  │            │
+└───┬────────┘  └─────┬──────┘
+    │ user stories     │ measurement plan
+    │ business rules   │
+    └────┬─────────────┘
+         │
+  ┌──────▼───────┐
+  │ux-researcher │  ← "who are the users, what do they need"
+  └──────┬───────┘
+         │ UX spec
+    ┌────┼────┐
+┌───▼───┐ ┌──▼──────────┐
+│ui-    │ │api-designer │
+│design │ │             │
+└───┬───┘ └──┬──────────┘
+    │ UI      │ API
+    │ spec    │ spec
+    └────┬────┘
+         │
+  ┌──────▼───────┐
+  │  architect   │  ← "how should we build it"
+  └──────┬───────┘
+         │ ADR + contracts
+    ┌────┼────────────┐
+┌───▼────────┐  ┌─────▼──────────┐
+│db-migration│  │security-agent  │ ← threat model
+└───┬────────┘  └─────┬──────────┘
+    │ migration        │ security reqs
+    │ scripts          │
+    └────┬─────────────┘
+         │
+  ┌──────▼───────┐
+  │  tech-lead   │  ← "who does what, in what order"
+  └──────┬───────┘
+         │ task briefs
+    ┌────┼────────────┐
+┌───▼──────┐ ┌───▼──────┐ ┌───▼──────┐
+│backend-  │ │frontend- │ │devops-   │
+│dev       │ │dev       │ │agent     │
+└───┬──────┘ └───┬──────┘ └───┬──────┘
+    └────────────┼────────────┘
+                 │ implementations
+          ┌──────▼───────┐
+          │  qa-agent    │
+          └──────┬───────┘
+                 │ test results
+    ┌────────────┼────────────┐
+┌───▼──────────┐ ┌───▼──────┐ ┌───▼─────────────┐
+│security-agent│ │perf-agent│ │observability-    │
+│(scan phase)  │ │          │ │agent             │
+└───┬──────────┘ └───┬──────┘ └───┬─────────────┘
+    └────────────────┼────────────┘
+                     │
+              ┌──────▼───────┐
+              │  reviewer    │
+              └──────┬───────┘
+                     │
+        ┌────────────┼────────────┐
+   ✅ Approve   🔁 Fix        🏛️ Escalate
+        │
+  ┌─────▼────┐
+  │docs-agent│  ← post-approval documentation
+  └──────────┘
+```
+
+### Shortcut: Engineering Only
+
+For small tasks, bug fixes, or tasks with an existing pattern — skip business and design layers:
+
+```
+tech-lead → backend-dev / frontend-dev / devops-agent → qa-agent → reviewer
 ```
 
 ## When to Start Where
@@ -132,35 +188,69 @@ For example, `backend-dev` `references/` contains Rust and Scala 3 patterns — 
 
 ```
 dev-agents/
-├── README.md                          ← this file
-├── PRINCIPLES.md                      ← FP + DDD + Clean Code canon (all agents reference this)
-├── CONTRIBUTING.md                    ← how to add/modify skills and run evals
+├── README.md
+├── PRINCIPLES.md                      ← FP + DDD + Clean Code + Security + Product canon
+├── CONTRIBUTING.md
 ├── .gitignore
 │
 ├── shared/
 │   ├── glossary.md                    ← ubiquitous language dictionary
-│   ├── contracts/
+│   ├── contracts/                     ← 18 handoff contracts between agents
 │   │   ├── README.md                  ← contract chain diagram + index
-│   │   ├── architect-output.md        ← architect → tech-lead
-│   │   ├── task-brief.md              ← tech-lead → dev agents
-│   │   ├── implementation-summary.md  ← backend-dev / frontend-dev → qa-agent + reviewer
-│   │   ├── devops-summary.md          ← devops-agent → reviewer
-│   │   ├── qa-report.md               ← qa-agent → reviewer
-│   │   └── reviewer-decision.md       ← reviewer → tech-lead
-│   └── evals/                         ← detailed markdown eval cases per agent
-│       ├── architect/
-│       ├── tech-lead/
-│       ├── backend-dev/
-│       ├── frontend-dev/
-│       ├── qa-agent/
-│       ├── devops-agent/
-│       └── reviewer/
+│   │   ├── prd.md                     ← product-owner → business-analyst, ux-researcher
+│   │   ├── business-requirements.md   ← business-analyst → architect, ux-researcher
+│   │   ├── measurement-plan.md        ← data-analyst → tech-lead, devs
+│   │   ├── ux-spec.md                ← ux-researcher → ui-designer, architect
+│   │   ├── ui-spec.md               ← ui-designer → frontend-dev
+│   │   ├── api-spec.md              ← api-designer → backend-dev, frontend-dev, docs-agent
+│   │   ├── architect-output.md       ← architect → tech-lead, db-migration, security-agent
+│   │   ├── threat-model.md           ← security-agent → tech-lead
+│   │   ├── migration-plan.md         ← db-migration → tech-lead, backend-dev
+│   │   ├── task-brief.md             ← tech-lead → dev agents
+│   │   ├── implementation-summary.md ← backend-dev / frontend-dev → qa-agent + reviewer
+│   │   ├── devops-summary.md         ← devops-agent → reviewer
+│   │   ├── qa-report.md              ← qa-agent → reviewer
+│   │   ├── security-scan.md          ← security-agent → reviewer
+│   │   ├── perf-report.md            ← perf-agent → reviewer
+│   │   ├── observability-audit.md    ← observability-agent → reviewer
+│   │   ├── reviewer-decision.md      ← reviewer → tech-lead
+│   │   └── docs-summary.md           ← docs-agent → tech-lead
+│   └── evals/                         ← detailed markdown eval cases (all 18 agents)
 │
+│── Business Division
+├── product-owner/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+├── business-analyst/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+├── data-analyst/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│
+│── Design Division
+├── ux-researcher/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+├── ui-designer/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+├── api-designer/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│
+│── Engineering Division
 ├── architect/
 │   ├── SKILL.md
 │   ├── evals/evals.json
 │   └── references/
-│       └── example-adr.md             ← completed ADR as a learning example
+│       └── example-adr.md
 ├── tech-lead/
 │   ├── SKILL.md
 │   └── evals/evals.json
@@ -168,16 +258,16 @@ dev-agents/
 │   ├── SKILL.md
 │   ├── evals/evals.json
 │   └── references/
-│       ├── rust-patterns.md           ← Rust DDD patterns, error handling, testing
-│       ├── scala3-patterns.md         ← Scala 3 opaque types, ADTs, aggregates, ZIO/cats
-│       ├── go-patterns.md             ← Go newtype pattern, error handling, table-driven tests
-│       └── typescript-patterns.md     ← branded types, Either/Result, discriminated unions
+│       ├── rust-patterns.md
+│       ├── scala3-patterns.md
+│       ├── go-patterns.md
+│       └── typescript-patterns.md
 ├── frontend-dev/
 │   ├── SKILL.md
 │   ├── evals/evals.json
 │   └── references/
-│       ├── leptos-patterns.md         ← Rust/WASM reactive components, server functions
-│       └── a11y-standards.md          ← accessibility requirements for all frameworks
+│       ├── leptos-patterns.md
+│       └── a11y-standards.md
 ├── qa-agent/
 │   ├── SKILL.md
 │   └── evals/evals.json
@@ -185,12 +275,47 @@ dev-agents/
 │   ├── SKILL.md
 │   ├── evals/evals.json
 │   ├── scripts/
-│   │   └── validate_manifests.sh      ← pre-commit K8s/Docker/CI validation
+│   │   └── validate_manifests.sh
 │   └── references/
-│       └── observability.md           ← metrics, logging, tracing, health endpoints
-└── reviewer/
+│       └── observability.md
+├── reviewer/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── scripts/
+│       └── automated_gates.sh
+├── security-agent/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│       ├── owasp-top10.md
+│       ├── auth-patterns.md
+│       └── dependency-scanning.md
+├── db-migration/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│       ├── migration-strategies.md
+│       └── migration-tools.md
+├── perf-agent/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│       ├── rust-perf.md
+│       ├── scala-perf.md
+│       └── load-testing.md
+│
+│── Operations Division
+├── observability-agent/
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│       ├── slo-template.md
+│       └── runbook-template.md
+└── docs-agent/
     ├── SKILL.md
     ├── evals/evals.json
-    └── scripts/
-        └── automated_gates.sh         ← mechanical hard-gate checks (unwrap, var, secrets, etc.)
+    └── references/
+        ├── openapi-template.md
+        ├── changelog-format.md
+        └── context-map.md
 ```

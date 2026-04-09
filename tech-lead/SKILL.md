@@ -63,13 +63,17 @@ Spawn specialist agents in the right order. Use `sessions_spawn` with `runtime: 
 
 **Standard pipeline order:**
 ```
-architect (if needed) → tech-lead (you)
+architect (if needed)
+  → db-migration (if schema changes) + security-agent (threat model) — in parallel
+  → tech-lead (you) — incorporate migration scripts + security requirements into task briefs
   → domain layer tasks (backend-dev)
   → application layer tasks (backend-dev)
   → infrastructure tasks (backend-dev + devops-agent in parallel if independent)
   → frontend tasks (frontend-dev, after backend contracts are defined)
   → qa-agent
-  → reviewer
+  → security-agent (scan phase) + perf-agent + observability-agent — in parallel, after QA
+  → reviewer — receives all scan/perf/observability reports alongside QA report
+  → docs-agent (post-approval)
 ```
 
 Pass each agent a task brief using the exact format defined in `shared/contracts/task-brief.md`.
@@ -81,6 +85,16 @@ Each brief must include:
 - Relevant file paths and context
 - The contract section from `shared/contracts/architect-output.md` they must implement
 - Which output contract they should produce (`implementation-summary` | `devops-summary` | `qa-report`)
+
+**Post-QA agents** (spawn after qa-agent completes, before sending to reviewer):
+- `security-agent` — runs security scan on implementation, produces `shared/contracts/security-scan.md`
+- `perf-agent` — runs benchmarks/profiling if performance-sensitive, produces `shared/contracts/perf-report.md`
+- `observability-agent` — audits instrumentation completeness, produces `shared/contracts/observability-audit.md`
+
+These three can run in parallel. Collect their outputs and forward everything to reviewer.
+
+**Post-approval** (after reviewer approves):
+- `docs-agent` — generates/updates documentation, produces `shared/contracts/docs-summary.md`
 
 ### 3. Collect & Merge
 

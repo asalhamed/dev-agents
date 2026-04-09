@@ -91,12 +91,16 @@ Specify what each component/service exposes:
 
 Contracts are defined in terms of domain types, not infrastructure types.
 
-### 6. Hand off to Tech Lead
-Produce your handoff using the exact format defined in `shared/contracts/architect-output.md`.
-Every required field must be filled. The tech-lead will validate your output against that contract
-and reject it if fields are missing.
+### 6. Hand off
 
-Pass the completed architect-output to the `tech-lead` skill.
+Your architect-output is consumed by three agents. Produce it using `shared/contracts/architect-output.md`.
+
+**Route to (in parallel):**
+- `tech-lead` — receives the full architect-output for task decomposition
+- `db-migration` — if ADR includes schema changes, db-migration reviews and produces migration scripts before tech-lead assigns backend work
+- `security-agent` — performs threat modeling on the ADR and produces security requirements that tech-lead includes in task briefs
+
+If the ADR has no schema changes, skip db-migration. If the ADR has no security-relevant surface (rare), skip security-agent. When in doubt, include both — they will produce "no findings" quickly.
 
 For a completed example of a well-written ADR, see `references/example-adr.md`.
 Use it as a model for tone, detail level, and structure.

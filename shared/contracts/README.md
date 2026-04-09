@@ -78,13 +78,3 @@ Each agent must:
 | reviewer-decision.md | reviewer | tech-lead | Engineering |
 | docs-summary.md | docs-agent | tech-lead | Operations |
 
-## Original Contract Files
-
-| Contract | Producer | Consumer(s) |
-|----------|----------|------------|
-| [`architect-output.md`](architect-output.md) | architect | tech-lead |
-| [`task-brief.md`](task-brief.md) | tech-lead | backend-dev, frontend-dev, qa-agent, devops-agent |
-| [`implementation-summary.md`](implementation-summary.md) | backend-dev, frontend-dev | qa-agent, reviewer |
-| [`devops-summary.md`](devops-summary.md) | devops-agent | reviewer |
-| [`qa-report.md`](qa-report.md) | qa-agent | reviewer |
-| [`reviewer-decision.md`](reviewer-decision.md) | reviewer | tech-lead |

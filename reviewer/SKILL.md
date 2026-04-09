@@ -39,7 +39,15 @@ Before reviewing, read the relevant input contracts to know what you're validati
 - Dev agent outputs: `shared/contracts/implementation-summary.md`
 - DevOps outputs: `shared/contracts/devops-summary.md`
 - QA reports: `shared/contracts/qa-report.md`
+- Security scan results: `shared/contracts/security-scan.md`
+- Performance report: `shared/contracts/perf-report.md` (if applicable)
+- Observability audit: `shared/contracts/observability-audit.md`
 - Your own output: produce decisions using `shared/contracts/reviewer-decision.md`
+
+If security-scan, perf-report, or observability-audit are provided, review them alongside the
+implementation. Security findings rated High or Critical are **blocking** — treat them as hard gates.
+Performance findings are non-blocking unless they violate an explicit performance SLO from the ADR.
+Observability gaps are non-blocking but should be flagged as follow-up tasks.
 
 Validate every incoming artifact against its contract before starting the review.
 If required fields are missing, send back immediately without reviewing the code.

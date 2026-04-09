@@ -34,7 +34,8 @@ evals/
 │   └── eval-003-escalate-design-issue.md
 ├── security-agent/
 │   ├── eval-001-threat-model-payment.md
-│   └── eval-002-sql-injection-detection.md
+│   ├── eval-002-sql-injection-detection.md
+│   └── eval-003-jwt-review.md
 ├── db-migration/
 │   ├── eval-001-non-nullable-column.md
 │   └── eval-002-column-rename.md
