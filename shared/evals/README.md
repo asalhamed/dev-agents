@@ -14,20 +14,24 @@ evals/
 │   └── eval-003-cross-context-boundary.md
 ├── tech-lead/
 │   ├── eval-001-task-decomposition.md
-│   └── eval-002-blocker-escalation.md
+│   ├── eval-002-blocker-escalation.md
+│   └── eval-003-rust-pipeline.md
 ├── backend-dev/
 │   ├── eval-001-domain-layer-purity.md
 │   ├── eval-002-scala3-aggregate.md
 │   └── eval-003-rust-value-object.md
 ├── frontend-dev/
 │   ├── eval-001-pure-component.md
-│   └── eval-002-contract-mismatch.md
+│   ├── eval-002-contract-mismatch.md
+│   └── eval-003-leptos-component.md
 ├── qa-agent/
 │   ├── eval-001-domain-invariant-coverage.md
 │   └── eval-002-no-impl-mirroring.md
+│
 ├── devops-agent/
 │   ├── eval-001-no-secrets-in-manifest.md
 │   └── eval-002-rollback-plan.md
+│
 └── reviewer/
     ├── eval-001-approve-clean-output.md
     ├── eval-002-reject-fp-violation.md

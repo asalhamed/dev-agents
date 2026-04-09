@@ -1,0 +1,35 @@
+{
+  "skill_name": "architect",
+  "evals": [
+    {
+      "id": "eval-001",
+      "prompt": "We need to integrate Stripe payments into our order service. Users should be able to pay for orders via credit card. The backend is Rust + actix-web + PostgreSQL. Produce an ADR for this feature.",
+      "expected_output": "ADR with a Payment bounded context, Anti-Corruption Layer (ACL) for Stripe, domain events for payment lifecycle, and clear context mapping between Order and Payment contexts.",
+      "files": [],
+      "expectations": [
+        "ADR defines a separate Payment bounded context (not merged into Order)",
+        "Anti-Corruption Layer (ACL) isolates Stripe SDK types from domain",
+        "Domain events defined: PaymentInitiated, PaymentSucceeded, PaymentFailed",
+        "Context map shows Order → Payment relationship (Customer-Supplier or Conformist)",
+        "No Stripe types leak into domain layer",
+        "PostgreSQL schema changes scoped to payment context",
+        "Idempotency strategy for payment processing documented"
+      ]
+    },
+    {
+      "id": "eval-002",
+      "prompt": "During code review, we discovered that the order-service is querying the inventory database directly to check stock levels before confirming an order. The inventory data lives in a separate bounded context. Assess this and produce an architectural recommendation.",
+      "expected_output": "Identification of a bounded context violation with a proposal to replace direct DB queries with domain events or an API call through a defined integration pattern.",
+      "files": [],
+      "expectations": [
+        "Identifies the direct DB query as a bounded context violation",
+        "Explains why shared database is an anti-pattern in DDD",
+        "Proposes domain events (e.g., StockReserved, StockCheckRequested) as the integration pattern",
+        "Alternative: synchronous API call to inventory service with timeout and fallback",
+        "Defines which context owns the stock data (Inventory, not Order)",
+        "Recommends eventual consistency strategy if using events",
+        "Produces updated context map showing proper boundary"
+      ]
+    }
+  ]
+}

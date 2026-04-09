@@ -147,3 +147,66 @@ none
 ### Escalations Required
 none
 ```
+
+---
+
+## Example (valid — Rust backend)
+
+```markdown
+## IMPLEMENTATION SUMMARY
+
+### Task Reference
+**Task ID:** T-004
+**Agent:** backend-dev
+**Task:** Implement Money value object with add() and currency validation
+**Stack:** Rust
+**Layer(s):** domain
+
+### Approach
+Implemented Money as a newtype struct with private fields and a validated constructor via `TryFrom`.
+The `add()` method returns `Result<Money, DomainError>` — never panics on currency mismatch.
+Currency is an enum (`USD`, `EUR`, `GBP`), not a String. All fields private, accessed via getters.
+
+### Files Changed
+| File | Change |
+|------|--------|
+| `src/domain/money.rs` | New Money struct, Currency enum, TryFrom impl, add() |
+| `src/domain/errors.rs` | Added NegativeAmount, CurrencyMismatch variants to DomainError |
+| `src/domain/mod.rs` | Added `pub mod money;` |
+| `tests/domain/money_test.rs` | 5 unit tests + 1 proptest |
+
+### Contracts Implemented
+| Contract item | Status | Notes |
+|---------------|--------|-------|
+| Money value object (ADR-009) | ✅ Implemented | Private fields, validated constructor |
+| Currency enum | ✅ Implemented | USD, EUR, GBP — exhaustive match |
+| add() with currency check | ✅ Implemented | Returns Result, no panic |
+
+### Domain Model Changes
+**Added aggregates:** none
+**Added value objects:** Money, Currency
+**Added domain events:** none
+**Modified aggregates:** none
+
+### FP / DDD Compliance
+- [x] No infrastructure types in domain layer
+- [x] No business logic outside domain layer
+- [x] All errors are typed (no thrown exceptions in domain)
+- [x] No null / no unsafe absence — no unwrap() in non-test code
+- [x] No mutable state in domain or application layers
+- [x] Names from domain ubiquitous language
+- [x] All public functions are total (handle all inputs)
+
+### Test Results
+**Command run:** `cargo test`
+**Result:** ✅ PASS
+**Coverage:** 79% → 84%
+**Threshold:** 80%
+**New tests added:** 6 (5 unit + 1 property-based)
+
+### Open Issues
+none
+
+### Escalations Required
+none
+```

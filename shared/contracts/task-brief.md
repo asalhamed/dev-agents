@@ -111,3 +111,56 @@ confirm() must:
 **Produce:** implementation-summary
 **Send to:** tech-lead
 ```
+
+---
+
+## Example (valid — Rust backend-dev)
+
+```markdown
+## TASK BRIEF
+
+### Assignment
+**Agent:** backend-dev
+**Task ID:** T-004
+**Task:** Implement Money value object with add() and currency validation
+**Layer:** domain
+
+### Context
+**Repo:** /workspace/order-service
+**Relevant files:**
+  - src/domain/money.rs (new file)
+  - src/domain/errors.rs (add DomainError variants)
+  - src/domain/mod.rs (add pub mod money)
+**Stack:** Rust
+**ADR:** ADR-009: Monetary Values as Value Objects
+
+### Contract to Implement or Consume
+Money value object (from ADR-009):
+- Money struct with private fields (amount: i64, currency: Currency)
+- Currency enum: USD, EUR, GBP
+- Construction via TryFrom: reject negative amounts, return Result
+- add() method: returns Result<Money, DomainError>, CurrencyMismatch on mixed currencies
+- No f64 — all amounts in cents (i64)
+- Newtype pattern — no raw i64 for monetary values
+
+### Dependencies
+**Blocked by:** none (pure domain — no infrastructure deps)
+**Provides to:** T-005 (OrderItem price field migration), T-008 (qa-agent tests)
+
+### Definition of Done
+- [ ] Money struct with private fields, getters for amount and currency
+- [ ] TryFrom impl that rejects negative amounts with NegativeAmount error
+- [ ] add() returns Result<Money, DomainError> — CurrencyMismatch on mismatched currencies
+- [ ] Currency is an enum (USD, EUR, GBP) — not a String
+- [ ] No unwrap() or panic!() in non-test code
+- [ ] Error types use thiserror for derive(Error)
+- [ ] Unit tests: construction, add same currency, add different currency, negative rejection
+- [ ] Property-based test (proptest) for addition associativity
+- [ ] Coverage at or above 80%
+- [ ] No infrastructure types imported in domain layer
+- [ ] See references/rust-patterns.md for implementation patterns
+
+### Output Expected
+**Produce:** implementation-summary
+**Send to:** tech-lead
+```
