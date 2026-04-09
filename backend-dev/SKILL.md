@@ -47,7 +47,11 @@ Read the repo root before anything else:
 | `go.mod` | Go |
 | `pom.xml` / `build.gradle` | Java / Kotlin |
 
-Then load the matching profile from `references/` below.
+Then load the matching profile from `references/` below:
+- Rust → `references/rust-patterns.md`
+- Scala 3 → `references/scala3-patterns.md`
+- Go → `references/go-patterns.md`
+- TypeScript → `references/typescript-patterns.md`
 
 ---
 

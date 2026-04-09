@@ -290,3 +290,6 @@ mechanical issues automatically.
 - **Dry-run before apply** — always, on every environment
 - **Additive before breaking** — add new config, verify, then remove old
 - **Document the why** — manifests are not self-explanatory; commit messages matter
+
+## References
+- For metrics, logging, tracing, and health endpoint patterns → `references/observability.md`

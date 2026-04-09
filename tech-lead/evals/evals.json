@@ -1,0 +1,54 @@
+{
+  "skill_name": "tech-lead",
+  "evals": [
+    {
+      "id": "eval-001",
+      "prompt": "ADR-012 has been approved: Notification Preferences. Users can configure email, SMS, and push notification preferences per event type. The stack is Scala 3 with ZIO. Break this down into implementation tasks for the pipeline.",
+      "expected_output": "6-10 task briefs ordered by layer: domain value objects first, then aggregate, application service, infrastructure adapters, frontend, QA, and reviewer.",
+      "files": [],
+      "expectations": [
+        "Produces 6-10 task briefs in task-brief.md format",
+        "Tasks ordered by dependency: domain → application → infrastructure → frontend → QA → reviewer",
+        "Each task is single-concern (no 'implement X and Y')",
+        "Domain tasks come first: NotificationPreference value object, preference aggregate",
+        "Stack specified as Scala 3 in every task brief",
+        "Coverage threshold set to 75% for Scala 3",
+        "Dependencies between tasks are explicit (blocked-by / provides-to)",
+        "QA task references domain invariants to test",
+        "Reviewer task is last in the pipeline"
+      ]
+    },
+    {
+      "id": "eval-002",
+      "prompt": "Mid-pipeline, the backend-dev agent reports that implementing the discount calculation requires accessing the billing context's pricing rules. This dependency was not in the original ADR. The current pipeline has 3 tasks completed and 4 remaining.",
+      "expected_output": "Pipeline paused with escalation to architect for the missing cross-context dependency.",
+      "files": [],
+      "expectations": [
+        "Pipeline is paused — no further tasks dispatched",
+        "Escalation sent to architect with specific question about billing context dependency",
+        "Completed tasks preserved — no rollback of finished work",
+        "Remaining tasks marked as blocked pending architect response",
+        "Clear description of what was discovered and why it's a design issue",
+        "Does not attempt to resolve the cross-context dependency independently"
+      ]
+    },
+    {
+      "id": "eval-003",
+      "prompt": "ADR-009 has been approved: Monetary Values as Value Objects. The stack is Rust (Cargo.toml present, uses thiserror for errors). The architect output specifies Money value object with Currency enum, no f64, reject negative amounts, newtype pattern. Break this down into implementation tasks.",
+      "expected_output": "Task briefs using Rust tooling (cargo test, cargo tarpaulin, cargo clippy), 80% coverage threshold, references rust-patterns.md, uses thiserror and proptest.",
+      "files": [],
+      "expectations": [
+        "All task briefs specify Stack: Rust",
+        "Build/test commands use cargo test, cargo tarpaulin, cargo clippy",
+        "Coverage threshold is 80% (not 75%)",
+        "References rust-patterns.md for implementation patterns",
+        "Error handling uses thiserror (not anyhow for domain errors)",
+        "Uses Result<T, E> not Either (Rust idiom)",
+        "QA task includes proptest for property-based testing",
+        "Single-concern tasks: Money VO → Currency enum → OrderItem price migration → serialization compat → QA → reviewer",
+        "Backward compatibility for serialization in Definition of Done",
+        "Domain tasks ordered before integration tasks"
+      ]
+    }
+  ]
+}

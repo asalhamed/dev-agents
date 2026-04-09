@@ -47,6 +47,8 @@ If required fields are missing, send back immediately without reviewing the code
 Before starting the code review, run `scripts/automated_gates.sh <repo-root>` to check
 mechanical violations automatically. Include the script output in your review.
 
+For accessibility review of frontend components, reference `frontend-dev/references/a11y-standards.md`.
+
 ## Review Dimensions
 
 ### 🔴 Hard Gates (Blocking — cannot approve until resolved)

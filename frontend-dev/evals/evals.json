@@ -1,0 +1,55 @@
+{
+  "skill_name": "frontend-dev",
+  "evals": [
+    {
+      "id": "eval-001",
+      "prompt": "Implement the NotificationPreferencesPanel component. Stack: Vue/Nuxt with Composition API. The panel displays notification preferences (email, SMS, push) per event type and allows toggling each. State must be managed through a Pinia store, not local component state. A SecurityAlert preference must always be enabled for email — this invariant is enforced in the store, not the component. Produce an implementation-summary contract.",
+      "expected_output": "Vue component using Composition API with script setup, Pinia store for state, SecurityAlert email toggle disabled in UI with invariant enforced in store.",
+      "files": [],
+      "expectations": [
+        "Composition API with <script setup lang='ts'>",
+        "State managed through Pinia store — not local ref/reactive",
+        "SecurityAlert email preference always enabled — invariant in store",
+        "Component does not contain business logic (invariant enforcement)",
+        "Toggle emits domain-named action to store",
+        "TypeScript types for preferences — no any",
+        "Loading and error states handled",
+        "implementation-summary contract produced with all required fields"
+      ]
+    },
+    {
+      "id": "eval-002",
+      "prompt": "Implement the OrderHistoryList component. Stack: React. The tech-lead provided an API contract from the architect, but the actual API response has different field names (snake_case vs camelCase) and a missing 'currency' field on line items. Implement the component and handle any contract mismatches appropriately.",
+      "expected_output": "Component implementation that flags the API/ADR contract mismatch to the tech-lead rather than silently mapping fields or working around the missing currency field.",
+      "files": [],
+      "expectations": [
+        "Identifies the field naming mismatch (snake_case vs camelCase)",
+        "Identifies the missing currency field on line items",
+        "Flags both issues to tech-lead — does NOT silently adapt or work around",
+        "Does not create a mapping layer without authorization",
+        "Escalation message is specific: lists exact field discrepancies",
+        "May implement what is possible but clearly marks contract gaps",
+        "Does not invent a default currency value"
+      ]
+    },
+    {
+      "id": "eval-003",
+      "prompt": "Implement the OrderSummary component. Stack: Leptos (Rust/WASM). The component receives a ReadSignal<Order> prop, displays order items with a computed total via create_memo, and has a Confirm Order button that uses create_server_action. The button should only appear for Draft orders. Handle pending and error states. No unwrap() or panic!() in component code. The component name must use domain language. Produce an implementation-summary contract.",
+      "expected_output": "Leptos component named OrderSummary with ReadSignal<Order> prop, create_memo for total, create_server_action for confirm, pending/error states, Draft-only button, no unwrap/panic.",
+      "files": [],
+      "expectations": [
+        "Component prop is ReadSignal<Order> — not owned Order or global state",
+        "Total computed via create_memo (pure derived state)",
+        "Confirm action via create_server_action — not direct HTTP",
+        "Button shows 'Confirming...' or similar when pending, and is disabled",
+        "Error displayed from action value — not silently swallowed",
+        "Confirm button only visible for Draft orders (Show/match)",
+        "No unwrap() in component code",
+        "No panic!() in component code",
+        "Component named OrderSummary (domain language)",
+        "For component with key for item list rendering",
+        "implementation-summary contract produced with all required fields"
+      ]
+    }
+  ]
+}

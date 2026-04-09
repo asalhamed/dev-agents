@@ -1,0 +1,36 @@
+{
+  "skill_name": "devops-agent",
+  "evals": [
+    {
+      "id": "eval-001",
+      "prompt": "Add database credentials to the order-service Kubernetes deployment. The database host, port, and database name are non-sensitive and should go in a ConfigMap. The database password is sensitive and must use ExternalSecret (vault-backend ClusterSecretStore). The password must NOT appear in any file in the repository — not in manifests, not in scripts, not in comments. Produce a devops-summary contract.",
+      "expected_output": "ConfigMap for non-sensitive DB config (host, port, db name), ExternalSecret for password referencing vault, password string absent from all files in diff.",
+      "files": [],
+      "expectations": [
+        "Non-sensitive config (host, port, db name) in ConfigMap",
+        "Password uses ExternalSecret with vault-backend ClusterSecretStore",
+        "Password value does NOT appear in any file (no literals, no examples, no comments)",
+        "Deployment references ConfigMap via configMapKeyRef for non-sensitive values",
+        "Deployment references Secret via secretKeyRef for password",
+        "ExternalSecret refreshInterval configured",
+        "devops-summary contract produced with all required fields",
+        "Security checklist in devops-summary confirms no secrets in diff"
+      ]
+    },
+    {
+      "id": "eval-002",
+      "prompt": "Update order-service Deployment to increase memory limit from 512Mi to 1Gi and add a new environment variable ORDER_BATCH_SIZE=100. The ORDER_BATCH_SIZE should be in a ConfigMap, not hardcoded in the deployment. Document a rollback plan that covers BOTH the deployment change and the ConfigMap change. Run dry-run validation. Produce a devops-summary contract.",
+      "expected_output": "Memory limit updated, ORDER_BATCH_SIZE in ConfigMap with configMapKeyRef in deployment, rollback plan covering both deployment and ConfigMap changes, dry-run validation.",
+      "files": [],
+      "expectations": [
+        "Memory limit changed from 512Mi to 1Gi",
+        "ORDER_BATCH_SIZE in ConfigMap, referenced via configMapKeyRef in deployment",
+        "Rollback plan covers BOTH deployment (memory revert) AND ConfigMap (remove ORDER_BATCH_SIZE)",
+        "Rollback plan is NOT just 'kubectl rollout undo'",
+        "Dry-run validation performed (kustomize build or kubectl apply --dry-run=server)",
+        "Blast radius identified as single service",
+        "devops-summary contract produced with all required fields"
+      ]
+    }
+  ]
+}

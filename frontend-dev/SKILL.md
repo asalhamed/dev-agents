@@ -38,6 +38,10 @@ If a required API contract doesn't exist or doesn't match what the UI needs → 
 | `vite.config.*` without framework config | Vanilla TypeScript |
 | `.html` + Tailwind + no bundler | Plain HTML / Tailwind |
 
+For detailed patterns per framework, see:
+- Leptos → `references/leptos-patterns.md`
+- Accessibility standards (all frameworks) → `references/a11y-standards.md`
+
 ---
 
 ## FP Principles for Frontend
