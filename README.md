@@ -103,21 +103,63 @@ For example, `backend-dev` `references/` contains Rust and Scala 3 patterns — 
 dev-agents/
 ├── README.md                          ← this file
 ├── PRINCIPLES.md                      ← FP + DDD + Clean Code canon (all agents reference this)
+├── CONTRIBUTING.md                    ← how to add/modify skills and run evals
+├── .gitignore
+│
+├── shared/
+│   ├── glossary.md                    ← ubiquitous language dictionary
+│   ├── contracts/
+│   │   ├── README.md                  ← contract chain diagram + index
+│   │   ├── architect-output.md        ← architect → tech-lead
+│   │   ├── task-brief.md              ← tech-lead → dev agents
+│   │   ├── implementation-summary.md  ← backend-dev / frontend-dev → qa-agent + reviewer
+│   │   ├── devops-summary.md          ← devops-agent → reviewer
+│   │   ├── qa-report.md               ← qa-agent → reviewer
+│   │   └── reviewer-decision.md       ← reviewer → tech-lead
+│   └── evals/                         ← detailed markdown eval cases per agent
+│       ├── architect/
+│       ├── tech-lead/
+│       ├── backend-dev/
+│       ├── frontend-dev/
+│       ├── qa-agent/
+│       ├── devops-agent/
+│       └── reviewer/
+│
 ├── architect/
-│   └── SKILL.md
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│       └── example-adr.md             ← completed ADR as a learning example
 ├── tech-lead/
-│   └── SKILL.md
+│   ├── SKILL.md
+│   └── evals/evals.json
 ├── backend-dev/
 │   ├── SKILL.md
+│   ├── evals/evals.json
 │   └── references/
 │       ├── rust-patterns.md           ← Rust DDD patterns, error handling, testing
-│       └── scala3-patterns.md         ← Scala 3 opaque types, ADTs, aggregates, ZIO/cats
+│       ├── scala3-patterns.md         ← Scala 3 opaque types, ADTs, aggregates, ZIO/cats
+│       ├── go-patterns.md             ← Go newtype pattern, error handling, table-driven tests
+│       └── typescript-patterns.md     ← branded types, Either/Result, discriminated unions
 ├── frontend-dev/
-│   └── SKILL.md                       ← Leptos, Vue/Nuxt, React, Svelte profiles
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   └── references/
+│       ├── leptos-patterns.md         ← Rust/WASM reactive components, server functions
+│       └── a11y-standards.md          ← accessibility requirements for all frameworks
 ├── qa-agent/
-│   └── SKILL.md                       ← FP testing principles, stack profiles, test plan format
+│   ├── SKILL.md
+│   └── evals/evals.json
 ├── devops-agent/
-│   └── SKILL.md                       ← Rust + Scala CI/CD, K8s/Kustomize, Docker patterns
+│   ├── SKILL.md
+│   ├── evals/evals.json
+│   ├── scripts/
+│   │   └── validate_manifests.sh      ← pre-commit K8s/Docker/CI validation
+│   └── references/
+│       └── observability.md           ← metrics, logging, tracing, health endpoints
 └── reviewer/
-    └── SKILL.md                       ← Hard gates: FP + DDD + quality thresholds
+    ├── SKILL.md
+    ├── evals/evals.json
+    └── scripts/
+        └── automated_gates.sh         ← mechanical hard-gate checks (unwrap, var, secrets, etc.)
 ```

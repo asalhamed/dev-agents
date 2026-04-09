@@ -65,7 +65,7 @@ For accessibility review of frontend components, reference `frontend-dev/referen
 - [ ] **No business logic in application or infrastructure layers** — logic belongs in domain objects only
 - [ ] **Bounded context respected** — no direct cross-context DB queries or direct model sharing
 - [ ] **ADR alignment** — implementation matches the architectural decision that was made
-- [ ] **Ubiquitous language used** — names come from domain, not technical layers; `Order` not `OrderRecord`
+- [ ] **Ubiquitous language used** — names come from domain, not technical layers; `Order` not `OrderRecord`. Cross-check against `shared/glossary.md` when available.
 - [ ] **Aggregate invariants enforced at root** — not in application service, not in DB constraint alone
 
 #### Clean Code Gates

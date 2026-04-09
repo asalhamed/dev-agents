@@ -73,3 +73,56 @@
 - New failures present → reject immediately
 - Coverage dropped below threshold → reject
 - Domain invariants table is empty → send back to qa-agent
+
+---
+
+## Example (valid — Scala 3 domain tests)
+
+```markdown
+## QA REPORT
+
+### Task Reference
+**Task ID(s) covered:** T-002
+**Stack:** Scala 3
+**Test command:** `sbt coverage test coverageReport`
+
+### Suite Result
+**Overall:** ✅ PASS
+**Pre-existing failures:** 0
+**New failures:** 0
+
+### Coverage
+| Metric | Before | After | Threshold | Status |
+|--------|--------|-------|-----------|--------|
+| Statement | 74% | 78% | 75% | ✅ |
+| Branch | 71% | 76% | 75% | ✅ |
+
+### Tests Written
+| Test name | Behavior verified | Type |
+|-----------|------------------|------|
+| `given empty order when confirm then EmptyOrder` | EmptyOrder invariant | Unit |
+| `given non-draft order when confirm then AlreadyProcessed` | Status transition guard | Unit |
+| `given draft order with items when confirm then Confirmed` | Happy path confirmation | Unit |
+| `confirmed order contains OrderConfirmed event` | Event production | Unit |
+
+### Domain Invariants Verified
+| Invariant | Test(s) covering it | Status |
+|-----------|---------------------|--------|
+| Order must have items to confirm | test 1 | ✅ Covered |
+| Order must be in Draft to confirm | test 2 | ✅ Covered |
+| confirm() produces OrderConfirmed event | test 4 | ✅ Covered |
+
+### Coverage Gaps
+none
+
+### FP Testing Compliance
+- [x] Pure domain functions tested without mocks
+- [x] Mocks used only at infrastructure boundary
+- [x] Tests verify behavior / invariants, not implementation details
+- [x] Test names describe Given/When/Then or behavior in plain language
+- [ ] Property-based tests used for domain rules with unbounded input space — N/A for this task
+- [x] No flaky tests introduced
+
+### Escalations Required
+none
+```

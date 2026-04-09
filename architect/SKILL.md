@@ -78,6 +78,10 @@ Flag anything that:
 Produce an ADR using the format below.
 Keep it short — a good ADR is 1-2 pages, not a thesis.
 
+### 4b. Update Glossary
+If this ADR introduces new domain terms, add them to `shared/glossary.md` under "Project-Specific Terms".
+The glossary is the single source of truth for ubiquitous language across all agents.
+
 ### 5. Define Contracts
 Specify what each component/service exposes:
 - **API endpoints** with types (not strings — typed request/response shapes)
@@ -93,6 +97,9 @@ Every required field must be filled. The tech-lead will validate your output aga
 and reject it if fields are missing.
 
 Pass the completed architect-output to the `tech-lead` skill.
+
+For a completed example of a well-written ADR, see `references/example-adr.md`.
+Use it as a model for tone, detail level, and structure.
 
 ## ADR Format
 
