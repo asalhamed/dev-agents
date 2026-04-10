@@ -70,11 +70,20 @@ architect (if needed)
   → application layer tasks (backend-dev)
   → infrastructure tasks (backend-dev + devops-agent in parallel if independent)
   → frontend tasks (frontend-dev, after backend contracts are defined)
+  → mobile tasks (android-dev, if mobile UI is needed)
+  → IoT/device tasks (iot-dev, if firmware or device protocol work is needed)
+  → video pipeline tasks (video-streaming, if streaming infrastructure is needed)
+  → edge processing tasks (edge-agent, if edge-side logic is needed)
+  → ML tasks (ml-engineer, if model training/deployment is needed)
+  → data pipeline tasks (data-engineer, if ingestion/storage pipeline work is needed)
+  → analytics/dashboard tasks (analytics-engineer, if dashboards/reports are needed)
   → qa-agent
   → security-agent (scan phase) + perf-agent + observability-agent — in parallel, after QA
   → reviewer — receives all scan/perf/observability reports alongside QA report
   → docs-agent (post-approval)
 ```
+
+Not every task involves all agents. Only spawn the agents relevant to the task.
 
 Pass each agent a task brief using the exact format defined in `shared/contracts/task-brief.md`.
 Every required field must be filled — agents will reject incomplete briefs.
@@ -84,7 +93,14 @@ Each brief must include:
 - Reference to `../PRINCIPLES.md` (always)
 - Relevant file paths and context
 - The contract section from `shared/contracts/architect-output.md` they must implement
-- Which output contract they should produce (`implementation-summary` | `devops-summary` | `qa-report`)
+- Which output contract they should produce:
+  - `implementation-summary` — backend-dev, frontend-dev, android-dev, edge-agent, ml-engineer, analytics-engineer
+  - `devops-summary` — devops-agent
+  - `qa-report` — qa-agent
+  - `device-spec` — iot-dev (firmware/device deliverables)
+  - `streaming-spec` — video-streaming (video pipeline deliverables)
+  - `model-spec` — ml-engineer (ML model deliverables, also uses implementation-summary for code)
+  - `protocol-spec` — iot-dev ↔ backend-dev (MQTT/telemetry schema, bidirectional)
 
 **Post-QA agents** (spawn after qa-agent completes, before sending to reviewer):
 - `security-agent` — runs security scan on implementation, produces `shared/contracts/security-scan.md`

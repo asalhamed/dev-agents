@@ -36,13 +36,24 @@ You enforce standards that protect the long-term health of the codebase.
 
 ## Contract References
 Before reviewing, read the relevant input contracts to know what you're validating against:
+
+**Core contracts (always check):**
 - Dev agent outputs: `shared/contracts/implementation-summary.md`
 - DevOps outputs: `shared/contracts/devops-summary.md`
 - QA reports: `shared/contracts/qa-report.md`
-- Security scan results: `shared/contracts/security-scan.md`
-- Performance report: `shared/contracts/perf-report.md` (if applicable)
-- Observability audit: `shared/contracts/observability-audit.md`
 - Your own output: produce decisions using `shared/contracts/reviewer-decision.md`
+
+**Post-QA scan contracts (if provided):**
+- Security scan: `shared/contracts/security-scan.md` — High/Critical findings are **blocking**
+- Performance report: `shared/contracts/perf-report.md` — blocking only if SLO violated
+- Observability audit: `shared/contracts/observability-audit.md` — non-blocking, flag as follow-up
+- Compliance audit: `shared/contracts/compliance-audit.md` — blocking for SOC2/GDPR violations
+
+**Domain-specific contracts (when reviewing specialized agents):**
+- IoT device deliverables: `shared/contracts/device-spec.md`
+- Video pipeline deliverables: `shared/contracts/streaming-spec.md`
+- ML model deliverables: `shared/contracts/model-spec.md`
+- Device/cloud protocol schemas: `shared/contracts/protocol-spec.md`
 
 If security-scan, perf-report, or observability-audit are provided, review them alongside the
 implementation. Security findings rated High or Critical are **blocking** — treat them as hard gates.

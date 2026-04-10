@@ -41,6 +41,19 @@ For material contracts, you always recommend review by qualified human counsel.
 
 ## Workflow
 
+### Input Contracts
+Legal reviews artifacts from other agents. Validate inputs against these contracts:
+- Partnership agreements for review: `shared/contracts/partnership-brief.md` (from partnerships-agent)
+- Compliance audit results: `shared/contracts/compliance-audit.md` (from compliance-agent)
+- Sales proposals for legal review: `shared/contracts/sales-proposal.md` (from sales)
+
+If a required field is missing from an incoming contract, send it back to the producing agent.
+
+### Output
+Legal does not have a dedicated output contract — outputs are annotated versions of input
+documents (redlined contracts, compliance assessments, approval/rejection with notes).
+Deliver output directly to the requesting agent.
+
 ### 1. Read Brief
 Identify:
 - **Document type** — customer contract, NDA, SLA, privacy policy, DPA, partnership agreement
