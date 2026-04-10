@@ -1,0 +1,33 @@
+{
+  "skill_name": "data-engineer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Design a data ingestion pipeline for 50,000 IoT devices publishing telemetry every 30 seconds. Data must be queryable within 60 seconds and retained for 30 days (raw) and 1 year (aggregated).",
+      "expected_output": "Kafka ingestion, time-series storage, downsampling strategy, retention policies",
+      "files": [],
+      "expectations": [
+        "Kafka as ingestion layer with device_id partition key",
+        "Time-series database selection with rationale",
+        "Downsampling: raw (30 days) to hourly (1 year)",
+        "Query latency <60s for recent data",
+        "Back-pressure handling for burst traffic",
+        "Produces implementation-summary contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design video storage and lifecycle management for 200 cameras recording 24/7. Storage must support instant playback for last 7 days and archived access for up to 1 year.",
+      "expected_output": "S3 bucket structure, lifecycle policies, HLS segment management, cost optimization",
+      "files": [],
+      "expectations": [
+        "S3/MinIO bucket structure organized by site/camera/date",
+        "Lifecycle policies: hot (7d) to warm (30d) to cold (90d) to archive (365d)",
+        "HLS segment and playlist management",
+        "Presigned URLs for secure playback",
+        "Cost estimate per camera per month",
+        "Produces implementation-summary contract"
+      ]
+    }
+  ]
+}

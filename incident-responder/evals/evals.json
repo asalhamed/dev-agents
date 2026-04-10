@@ -1,0 +1,32 @@
+{
+  "skill_name": "incident-responder",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "The video pipeline is down. WebRTC connections are failing for all customers. RTSP ingestion is working but the SFU is returning 503 errors. Triage this incident, determine severity, and coordinate response.",
+      "expected_output": "Incident triage with severity classification, investigation steps, mitigation plan, and communication",
+      "files": [],
+      "expectations": [
+        "Severity correctly classified as P1 (all customers affected)",
+        "Triage steps are specific and ordered (check SFU pods, check TURN, check resources)",
+        "Communication plan for customers",
+        "Mitigation before root cause (restore service first)",
+        "Produces incident-report contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Write a blameless postmortem for an incident where 15% of IoT devices disconnected simultaneously due to an MQTT broker configuration change during a routine deployment. Outage lasted 25 minutes.",
+      "expected_output": "Complete blameless postmortem with timeline, root cause, action items",
+      "files": [],
+      "expectations": [
+        "Timeline is factual and timestamped",
+        "Root cause goes beyond symptoms (why was the config change deployed without testing)",
+        "Blameless language (systems, not people)",
+        "Action items have owners and due dates",
+        "Lessons learned section with preventive measures",
+        "Produces incident-report contract"
+      ]
+    }
+  ]
+}

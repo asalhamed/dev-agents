@@ -1,0 +1,32 @@
+{
+  "skill_name": "hr",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a job description for a Senior Embedded Software Engineer for our IoT team. Must have Rust or C experience, MQTT knowledge, and OTA update experience. Include interview process and success criteria.",
+      "expected_output": "Complete JD with responsibilities, requirements, interview process, and 90-day success criteria",
+      "files": [],
+      "expectations": [
+        "Role responsibilities are specific to IoT (not generic embedded)",
+        "Requirements distinguish must-have from nice-to-have",
+        "Compensation range included and benchmarked",
+        "Interview process defined (stages, duration, interviewers)",
+        "90-day success criteria are specific and measurable",
+        "Produces hiring-plan contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Plan the hiring sequence for an IoT startup going from 5 to 15 people over the next 12 months. Current team: CTO, 1 backend, 1 embedded, 1 frontend, 1 DevOps. Prioritize and justify the order.",
+      "expected_output": "Sequenced hiring plan with role priorities, timeline, justification, and budget impact",
+      "files": [],
+      "expectations": [
+        "Hiring sequence has clear rationale (bottleneck-driven)",
+        "Each role justified by specific need (not speculative)",
+        "Timeline is realistic (3-6 months for rare skills)",
+        "Budget impact calculated (salary + equity + recruiting)",
+        "Produces hiring-plan contract"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "skill_name": "sales",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Respond to an RFP from a water utility company seeking remote monitoring for 30 water treatment plants. They require SCADA integration, NERC CIP compliance, and 99.9% uptime SLA. Draft the technical proposal.",
+      "expected_output": "Complete technical proposal addressing all RFP requirements with architecture, timeline, and pricing",
+      "files": [],
+      "expectations": [
+        "Addresses all stated requirements (SCADA, NERC CIP, 99.9% uptime)",
+        "Realistic implementation timeline with phases",
+        "Pricing is structured and justified",
+        "SLA terms are specific and achievable",
+        "References relevant case studies or capabilities",
+        "Produces sales-proposal contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A manufacturing prospect says: 'We already have a SCADA system that does monitoring. Why would we need your platform on top of it?' Handle this objection and move the conversation forward.",
+      "expected_output": "Objection response using acknowledge/explore/respond framework, with specific differentiators",
+      "files": [],
+      "expectations": [
+        "Acknowledges SCADA value (doesn't dismiss their investment)",
+        "Differentiates: remote access, video, ML analytics, mobile",
+        "Uses specific examples or data points",
+        "Ends with a forward-moving question or next step",
+        "Produces sales-proposal contract"
+      ]
+    }
+  ]
+}

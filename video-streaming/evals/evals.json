@@ -1,0 +1,32 @@
+{
+  "skill_name": "video-streaming",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Design a streaming pipeline that ingests RTSP from 50 IP cameras, delivers live WebRTC streams to browser clients (target: <1s latency), and records HLS segments to S3.",
+      "expected_output": "GStreamer/FFmpeg pipeline design, WebRTC SFU architecture, HLS recording with retention policy",
+      "files": [],
+      "expectations": [
+        "RTSP ingestion to transcoding to WebRTC fork + HLS recording",
+        "SFU architecture (not P2P — 50 cameras won't scale with P2P)",
+        "TURN server for NAT traversal",
+        "HLS segment lifecycle and S3 retention policy defined",
+        "Camera disconnect handled (reconnect without manual intervention)",
+        "Produces streaming-spec contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A remote site has a 2Mbps uplink shared by 4 cameras. Design a bandwidth-adaptive streaming solution that prioritizes live viewing over recording and degrades gracefully.",
+      "expected_output": "Adaptive bitrate strategy, priority queuing, local buffering for recording",
+      "files": [],
+      "expectations": [
+        "Bandwidth budget allocated between live and recording",
+        "Live viewing gets priority (recording degrades first)",
+        "Adaptive bitrate for live: reduce quality before dropping stream",
+        "Local buffering for recording when bandwidth is constrained",
+        "Produces streaming-spec contract"
+      ]
+    }
+  ]
+}

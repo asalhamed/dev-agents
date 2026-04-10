@@ -55,7 +55,7 @@ Each agent must:
 2. **Produce complete outputs** — never hand off with missing required fields
 3. **Use exact field names** — field names are part of the contract; don't rename them
 
-## All Contracts (18)
+## All Contracts (31)
 
 | Contract | Producer | Consumer(s) | Phase |
 |----------|----------|-------------|-------|
@@ -77,4 +77,17 @@ Each agent must:
 | observability-audit.md | observability-agent | reviewer | Engineering |
 | reviewer-decision.md | reviewer | tech-lead | Engineering |
 | docs-summary.md | docs-agent | tech-lead | Operations |
+| device-spec.md | iot-dev | qa-agent, reviewer | Domain |
+| protocol-spec.md | iot-dev ↔ backend-dev | architect, tech-lead | Domain |
+| streaming-spec.md | video-streaming | devops-agent, qa-agent, reviewer | Domain |
+| model-spec.md | ml-engineer | edge-agent, backend-dev | Domain |
+| gtm-strategy.md | growth-strategist | product-owner, marketing, sales | Strategy |
+| partnership-brief.md | partnerships-agent | product-owner, legal | Strategy |
+| incident-report.md | incident-responder | tech-lead, observability-agent | Operations |
+| compliance-audit.md | compliance-agent | legal, reviewer | Operations |
+| marketing-brief.md | marketing | product-owner | Business Ops |
+| sales-proposal.md | sales | legal, finance | Business Ops |
+| customer-health.md | customer-success | product-owner, data-analyst | Business Ops |
+| hiring-plan.md | hr | finance | Business Ops |
+| financial-report.md | finance | growth-strategist, product-owner | Business Ops |
 

@@ -1,0 +1,32 @@
+{
+  "skill_name": "marketing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write a case study for an oil & gas customer who deployed our IoT monitoring platform across 80 wellheads and reduced field visits by 65%. Include the full case study structure with quantified results.",
+      "expected_output": "Complete case study with customer/challenge/solution/results structure, quantified outcomes",
+      "files": [],
+      "expectations": [
+        "Follows case study template (customer/challenge/solution/results)",
+        "Quantified results (% reduction, $ savings, time improvement)",
+        "Technical content is accurate (MQTT, sensors, dashboard)",
+        "Includes customer quote",
+        "Clear call-to-action",
+        "Produces marketing-brief contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Create product positioning for our IoT remote monitoring platform targeting manufacturing companies. Differentiate from generic SCADA/MES solutions.",
+      "expected_output": "Positioning statement, competitive differentiation, messaging framework",
+      "files": [],
+      "expectations": [
+        "Positioning statement follows: For [target], who [need], our [product] is [category] that [benefit]",
+        "Clear differentiation from SCADA (complement, not replace)",
+        "Messaging leads with outcomes, not features",
+        "Addresses top 3 objections specific to manufacturing",
+        "Produces marketing-brief contract"
+      ]
+    }
+  ]
+}

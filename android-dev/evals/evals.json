@@ -1,0 +1,32 @@
+{
+  "skill_name": "android-dev",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Implement a live video feed screen in Kotlin/Jetpack Compose that connects to an RTSP stream from an IP camera. The screen should show connection status, handle reconnection automatically, and work in the background.",
+      "expected_output": "Compose UI with ExoPlayer integration, RTSP URL handling, foreground service for background playback, reconnection logic",
+      "files": [],
+      "expectations": [
+        "ExoPlayer used for RTSP playback (not raw MediaPlayer)",
+        "ForegroundService for background playback",
+        "Automatic reconnection with exponential backoff",
+        "Connection state shown in UI (connecting/playing/error)",
+        "No business logic in Composable",
+        "Produces implementation-summary contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Implement offline-first alert storage for an Android monitoring app. Alerts come from Kafka via backend API. App should show alerts even when offline and sync when reconnected.",
+      "expected_output": "Room database for local storage, WorkManager for background sync, StateFlow for UI updates",
+      "files": [],
+      "expectations": [
+        "Room database stores alerts locally",
+        "WorkManager syncs when connectivity available (not raw thread)",
+        "UI shows cached data immediately, then updates",
+        "Sync is idempotent (safe to retry)",
+        "Produces implementation-summary contract"
+      ]
+    }
+  ]
+}

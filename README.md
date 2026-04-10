@@ -12,7 +12,7 @@ All agents operate under three non-negotiable principles — read [`PRINCIPLES.m
 | **Domain-Driven Design** | Bounded contexts, aggregates, domain events, ubiquitous language, layered architecture |
 | **Clean Code** | Names reveal intent, functions do one thing, no magic, no noise |
 
-## Agent Team (18 Agents)
+## Agent Team (35 Agents)
 
 ### Business Division
 | Agent | Role |
@@ -47,6 +47,43 @@ All agents operate under three non-negotiable principles — read [`PRINCIPLES.m
 |-------|------|
 | `observability-agent` 📡 | Instrumentation audit, SLO validation, alert rules |
 | `docs-agent` 📝 | API docs, ADR index, changelogs |
+
+### Domain Engineering
+| Agent | Role |
+|-------|------|
+| `android-dev` 📱 | Android app, live video, offline-first, Kotlin/Compose |
+| `iot-dev` 🔌 | Firmware, MQTT, device protocols, embedded Rust |
+| `video-streaming` 🎥 | Video pipelines, WebRTC, RTSP, HLS, recording |
+| `edge-agent` 🖥️ | Edge computing, local inference, store-and-forward |
+| `ml-engineer` 🧠 | ML models, anomaly detection, video analytics, MLOps |
+
+### Data Platform
+| Agent | Role |
+|-------|------|
+| `data-engineer` 🔧 | Data pipelines, Kafka, time-series, video storage |
+| `analytics-engineer` 📊 | Dashboards, dbt models, fleet analytics, reporting |
+
+### Business Operations
+| Agent | Role |
+|-------|------|
+| `marketing` 📣 | Content, campaigns, positioning, lead generation |
+| `sales` 💼 | Proposals, RFPs, pipeline management, deal closing |
+| `customer-success` 🤝 | Onboarding, health scoring, retention, support |
+| `finance` 💰 | Pricing, unit economics, runway, financial modeling |
+| `legal` ⚖️ | Contracts, privacy, compliance, SLA review |
+| `hr` 👥 | Hiring, job descriptions, team structure, onboarding |
+
+### Strategy
+| Agent | Role |
+|-------|------|
+| `growth-strategist` 🚀 | GTM strategy, market analysis, vertical targeting |
+| `partnerships-agent` 🤝 | Hardware partners, channel partners, integrations |
+
+### Specialized Operations
+| Agent | Role |
+|-------|------|
+| `incident-responder` 🚨 | Incident management, postmortems, runbooks |
+| `compliance-agent` 🔒 | SOC2, GDPR, ISO 27001, IoT security standards |
 
 ## Pipeline
 
@@ -135,19 +172,35 @@ tech-lead → backend-dev / frontend-dev / devops-agent → qa-agent → reviewe
 
 ## When to Start Where
 
-| Signal in the request | Start at |
+| Signal | Start at |
 |---|---|
-| "what should we build", "feature idea", "roadmap" | product-owner |
-| "user needs", "persona", "usability" | ux-researcher |
-| "how should the API look", "endpoint design" | api-designer |
-| "new service", "schema change", "bounded context" | architect |
-| "security review", "threat model", "is this secure" | security-agent |
-| "migration", "schema change" (implementation) | db-migration |
-| "bug fix", "small task", "implement this" | tech-lead |
-| "performance issue", "slow", "benchmark" | perf-agent |
-| "documentation", "API docs", "changelog" | docs-agent |
-| "monitoring", "alerting", "are we logging" | observability-agent |
-| Unclear / ambiguous | tech-lead (will escalate if needed) |
+| "new market", "growth opportunity", "GTM" | growth-strategist |
+| "partnership", "hardware vendor", "integration" | partnerships-agent |
+| "feature idea", "PRD", "roadmap", "what to build" | product-owner |
+| "user research", "persona", "journey" | ux-researcher |
+| "API design", "endpoint" | api-designer |
+| "system design", "bounded context", "ADR" | architect |
+| "Android app", "mobile feature" | android-dev |
+| "firmware", "MQTT", "device protocol", "IoT" | iot-dev |
+| "video stream", "camera feed", "WebRTC", "RTSP" | video-streaming |
+| "edge processing", "local inference" | edge-agent |
+| "ML model", "anomaly detection", "computer vision" | ml-engineer |
+| "data pipeline", "time-series", "Kafka" | data-engineer |
+| "dashboard", "analytics", "reporting" | analytics-engineer |
+| "security review", "threat model" | security-agent |
+| "schema change", "migration" | db-migration |
+| "bug fix", "implement", "small task" | tech-lead |
+| "marketing", "content", "campaign" | marketing |
+| "sales", "proposal", "demo" | sales |
+| "customer issue", "onboarding", "churn" | customer-success |
+| "pricing", "budget", "runway" | finance |
+| "contract", "NDA", "privacy policy" | legal |
+| "SOC2", "GDPR audit", "compliance" | compliance-agent |
+| "incident", "outage", "postmortem" | incident-responder |
+| "hiring", "job description", "team structure" | hr |
+| "performance", "slow", "benchmark" | perf-agent |
+| "monitoring", "alerting", "SLO" | observability-agent |
+| "documentation", "API docs" | docs-agent |
 
 ## Stack Support
 

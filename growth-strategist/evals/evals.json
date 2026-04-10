@@ -1,0 +1,33 @@
+{
+  "skill_name": "growth-strategist",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We're an IoT monitoring startup with 5 customers in manufacturing. Should we go deeper in manufacturing or expand to oil & gas? Analyze both verticals and recommend a strategy with 90-day plan.",
+      "expected_output": "Vertical analysis comparing manufacturing depth vs O&G expansion, with recommendation and action plan",
+      "files": [],
+      "expectations": [
+        "Both verticals analyzed (market size, buyer, sales cycle, requirements)",
+        "Clear recommendation with rationale (not 'it depends')",
+        "TAM/SAM estimates sourced",
+        "90-day plan with specific milestones",
+        "Risk assessment for chosen strategy",
+        "Produces gtm-strategy contract"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Design a GTM strategy for launching our video surveillance add-on to existing IoT customers. We have 15 customers with 5,000 devices. Video is a new capability.",
+      "expected_output": "GTM strategy for video upsell to existing base with pricing, positioning, and rollout plan",
+      "files": [],
+      "expectations": [
+        "Leverages existing customer relationships (land-and-expand)",
+        "Positioning differentiates from standalone VMS solutions",
+        "Pricing strategy with rationale",
+        "Rollout plan: pilot customers first, then broader launch",
+        "Success metrics defined",
+        "Produces gtm-strategy contract"
+      ]
+    }
+  ]
+}

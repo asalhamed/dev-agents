@@ -63,9 +63,60 @@ evals/
 ├── observability-agent/
 │   ├── eval-001-instrumentation-audit.md
 │   └── eval-002-alert-rules-review.md
-└── docs-agent/
-    ├── eval-001-api-documentation.md
-    └── eval-002-adr-index-update.md
+├── docs-agent/
+│   ├── eval-001-api-documentation.md
+│   └── eval-002-adr-index-update.md
+├── android-dev/
+│   ├── eval-001-live-video-feed.md
+│   └── eval-002-offline-alerts.md
+├── iot-dev/
+│   ├── eval-001-mqtt-telemetry.md
+│   └── eval-002-ota-firmware.md
+├── video-streaming/
+│   ├── eval-001-rtsp-webrtc-pipeline.md
+│   └── eval-002-bandwidth-constrained-site.md
+├── edge-agent/
+│   ├── eval-001-store-and-forward.md
+│   └── eval-002-edge-ml-deployment.md
+├── ml-engineer/
+│   ├── eval-001-vibration-anomaly.md
+│   └── eval-002-edge-person-detection.md
+├── data-engineer/
+│   ├── eval-001-iot-ingestion-pipeline.md
+│   └── eval-002-video-storage-lifecycle.md
+├── analytics-engineer/
+│   ├── eval-001-fleet-health-dashboard.md
+│   └── eval-002-alert-metrics.md
+├── marketing/
+│   ├── eval-001-iot-case-study.md
+│   └── eval-002-product-positioning.md
+├── sales/
+│   ├── eval-001-rfp-response.md
+│   └── eval-002-objection-handling.md
+├── customer-success/
+│   ├── eval-001-device-onboarding.md
+│   └── eval-002-churn-risk.md
+├── finance/
+│   ├── eval-001-unit-economics.md
+│   └── eval-002-pricing-model.md
+├── legal/
+│   ├── eval-001-video-privacy-review.md
+│   └── eval-002-sla-drafting.md
+├── hr/
+│   ├── eval-001-embedded-engineer-jd.md
+│   └── eval-002-hiring-sequence.md
+├── incident-responder/
+│   ├── eval-001-video-pipeline-incident.md
+│   └── eval-002-postmortem.md
+├── compliance-agent/
+│   ├── eval-001-soc2-gap-analysis.md
+│   └── eval-002-gdpr-video.md
+├── growth-strategist/
+│   ├── eval-001-vertical-selection.md
+│   └── eval-002-gtm-strategy.md
+└── partnerships-agent/
+    ├── eval-001-camera-vendor-partnership.md
+    └── eval-002-channel-partner.md
 ```
 
 ## Eval Format

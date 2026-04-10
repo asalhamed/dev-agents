@@ -264,3 +264,31 @@ Features exist to solve user problems. Keep this chain visible from requirements
 - **Acceptance criteria are in Given/When/Then format and are testable.** "Users should be able to..." is not acceptance criteria. "Given X, when Y, then Z" is.
 - **Business rules are domain rules.** They belong in the domain layer, expressed in ubiquitous language, not scattered across controllers and SQL queries.
 - **Scope creep is a pipeline smell.** If requirements expand after the architect has produced an ADR, stop. Go back to product-owner. Don't silently absorb scope.
+
+---
+
+## IoT Principles
+
+- **Offline-first.** Devices and edge systems must function without cloud connectivity. Design for intermittent connectivity; sync when available.
+- **Bandwidth-aware.** Never assume unlimited bandwidth. Compress, filter, and prioritize data at the source. Send summaries and alerts, not raw streams.
+- **OTA safety.** Firmware updates must be atomic, verified, and rollback-capable. A bad OTA can brick thousands of devices and destroy customer trust.
+- **Device identity.** Every device has a cryptographic identity. No shared secrets across a fleet. Certificate rotation must be possible without physical access.
+- **Telemetry versioning.** Device telemetry schemas must be backward-compatible. Devices cannot all upgrade simultaneously — plan for version skew.
+
+---
+
+## Video Principles
+
+- **Privacy by design.** Video of people requires consent, data minimization, and retention policies from day one — not as a retrofit.
+- **Latency budgets.** Define and enforce end-to-end latency targets. Camera → viewer must meet the use case requirement. Measure it; don't assume it.
+- **Graceful degradation.** Reduce quality before dropping frames. Something visible is better than nothing. Adaptive bitrate is not optional for constrained links.
+- **Storage lifecycle.** Every video segment has a retention policy. Infinite storage is not a product feature — it is a cost and compliance liability.
+
+---
+
+## Startup Principles
+
+- **Measure before you build.** Every feature must have defined success metrics before development starts. If we cannot measure it, we cannot know if it worked.
+- **Customer zero.** The first customer's deployment is the most important. Learn everything from it. Treat it like a partnership, not a transaction.
+- **Reversible decisions.** Prefer decisions that can be undone over permanent commitments, especially early on when information is incomplete.
+- **Hire for the next 6 months.** Not for what you'll need in 2 years. Over-hiring ahead of product-market fit burns runway.
