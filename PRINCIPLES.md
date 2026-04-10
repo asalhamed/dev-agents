@@ -292,3 +292,13 @@ Features exist to solve user problems. Keep this chain visible from requirements
 - **Customer zero.** The first customer's deployment is the most important. Learn everything from it. Treat it like a partnership, not a transaction.
 - **Reversible decisions.** Prefer decisions that can be undone over permanent commitments, especially early on when information is incomplete.
 - **Hire for the next 6 months.** Not for what you'll need in 2 years. Over-hiring ahead of product-market fit burns runway.
+
+---
+
+## Delivery Principles
+
+- **Estimate before you start.** Every feature has a kickoff with estimates and a target delivery date before implementation begins. No feature starts without a feature-kickoff contract.
+- **Scope is sacred.** Changes after kickoff require a formal scope-change-request. No agent silently absorbs new work — escalate to product-owner first.
+- **Acceptance before release.** Product-owner validates against PRD acceptance criteria before any release. Code review is necessary but not sufficient — the feature must do what the user asked for.
+- **Ship gradually.** Feature flags and phased rollout for all non-trivial features. Big-bang releases are opt-in exceptions, not the default.
+- **Learn from every feature.** Retrospective is mandatory after every delivery. No feature is fully done until lessons are captured and action items assigned.

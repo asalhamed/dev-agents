@@ -37,15 +37,21 @@ api-designer → [api-spec] → backend-dev, frontend-dev, docs-agent
 architect → [architect-output] → tech-lead, db-migration, security-agent
 security-agent → [threat-model] → tech-lead
 db-migration → [migration-plan] → tech-lead, backend-dev
+tech-lead → [feature-kickoff] → all agents, product-owner      ← Checkpoint 1
 tech-lead → [task-brief] → backend-dev, frontend-dev, devops-agent
+any agent → [scope-change-request] → product-owner, tech-lead    ← if scope drifts
 backend-dev/frontend-dev → [implementation-summary] → qa-agent, reviewer
 devops-agent → [devops-summary] → reviewer
 qa-agent → [qa-report] → reviewer
+qa-agent → [acceptance-test] → product-owner, reviewer
 security-agent → [security-scan] → reviewer
 perf-agent → [perf-report] → reviewer
 observability-agent → [observability-audit] → reviewer
-reviewer → [reviewer-decision] → tech-lead
+reviewer → [reviewer-decision] → tech-lead                       ← Checkpoint 2
+product-owner → [acceptance-test sign-off] → tech-lead            ← Checkpoint 3
+tech-lead + devops-agent → [release-plan] → product-owner, devops-agent
 docs-agent → [docs-summary] → tech-lead
+tech-lead → [retrospective] → all agents, product-owner           ← Checkpoint 4
 ```
 
 ## Validation Rules
@@ -55,8 +61,9 @@ Each agent must:
 2. **Produce complete outputs** — never hand off with missing required fields
 3. **Use exact field names** — field names are part of the contract; don't rename them
 
-## All Contracts (31)
+## All Contracts (36)
 
+### Core Engineering Contracts
 | Contract | Producer | Consumer(s) | Phase |
 |----------|----------|-------------|-------|
 | prd.md | product-owner | business-analyst, ux-researcher | Business |
@@ -77,10 +84,27 @@ Each agent must:
 | observability-audit.md | observability-agent | reviewer | Engineering |
 | reviewer-decision.md | reviewer | tech-lead | Engineering |
 | docs-summary.md | docs-agent | tech-lead | Operations |
+
+### Domain-Specific Contracts
+| Contract | Producer | Consumer(s) | Phase |
+|----------|----------|-------------|-------|
 | device-spec.md | iot-dev | qa-agent, reviewer | Domain |
 | protocol-spec.md | iot-dev ↔ backend-dev | architect, tech-lead | Domain |
 | streaming-spec.md | video-streaming | devops-agent, qa-agent, reviewer | Domain |
 | model-spec.md | ml-engineer | edge-agent, backend-dev | Domain |
+
+### Delivery Lifecycle Contracts
+| Contract | Producer | Consumer(s) | Phase |
+|----------|----------|-------------|-------|
+| feature-kickoff.md | tech-lead | all agents, product-owner | Delivery |
+| acceptance-test.md | qa-agent | product-owner, reviewer | Delivery |
+| scope-change-request.md | any agent | product-owner, tech-lead | Delivery |
+| release-plan.md | tech-lead + devops-agent | product-owner, devops-agent | Delivery |
+| retrospective.md | tech-lead | all agents, product-owner | Delivery |
+
+### Business Operations Contracts
+| Contract | Producer | Consumer(s) | Phase |
+|----------|----------|-------------|-------|
 | gtm-strategy.md | growth-strategist | product-owner, marketing, sales | Strategy |
 | partnership-brief.md | partnerships-agent | product-owner, legal | Strategy |
 | incident-report.md | incident-responder | tech-lead, observability-agent | Operations |

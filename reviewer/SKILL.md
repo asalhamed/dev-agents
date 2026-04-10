@@ -198,6 +198,24 @@ Do not continue dev work until architect provides revised ADR.
 
 ---
 
+## Feature-Level Review
+
+For features (not individual tasks), check the pipeline-level Definition of Done
+from `shared/contracts/feature-kickoff.md` before giving final approval:
+
+- [ ] All acceptance criteria have matching tests (qa-agent acceptance-test contract)
+- [ ] Success metrics instrumented (data-analyst measurement-plan)
+- [ ] Feature flag configured (if applicable)
+- [ ] Rollback plan documented in feature-kickoff
+- [ ] Release sequence defined (release-plan contract)
+- [ ] Documentation updated (docs-summary)
+
+If the feature-kickoff DoD is incomplete, **request completion before final approval**.
+This is separate from per-task code review — it's the pipeline-level quality gate.
+
+Note: you review the acceptance-test contract alongside qa-report, but product-owner
+is the one who signs off on it. Your role is to verify it exists and all ACs are covered.
+
 ## Loop Handling
 When reviewing a **re-submission** after requesting changes:
 - Only re-check the issues you previously flagged

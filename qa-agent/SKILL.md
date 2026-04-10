@@ -275,6 +275,24 @@ Key fields the reviewer hard-gates on:
 - Domain Invariants Verified table (cannot be empty)
 - FP Testing Compliance checklist
 
+### 5. Acceptance Testing (Feature-Level)
+
+In addition to unit/integration tests, validate the feature against PRD acceptance criteria:
+
+1. Read acceptance criteria from `shared/contracts/feature-kickoff.md`
+2. For each criterion, design a test (manual or automated) that verifies it end-to-end
+3. For multi-component features, design E2E journey tests:
+   - Identify the full user journey (e.g., “user opens app → views feed → receives alert”)
+   - Test the journey crossing component boundaries
+   - Verify each integration point (e.g., camera → video pipeline → mobile app)
+4. Produce `shared/contracts/acceptance-test.md` for product-owner sign-off
+
+See `references/e2e-testing.md` for tooling, integration point patterns, and E2E test structure.
+
+**This is separate from qa-report.** The qa-report validates code quality. The acceptance-test validates that the feature meets user requirements.
+
+**Do not block qa-report on acceptance testing** — produce both, but they serve different consumers.
+
 ## Escalation Rules
 
 | Situation | Action |

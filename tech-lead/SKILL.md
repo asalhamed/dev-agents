@@ -57,7 +57,38 @@ Produce a task breakdown before spawning anything. Show it to the user if >3 tas
 - Never bundle "implement + test" into one task — QA agent is separate
 - Never assign cross-context work to a single dev agent
 
-### 2. Assign Tasks
+### 2. Estimate and Create Feature Kickoff
+
+After decomposing tasks, estimate each one:
+- **S** (Small): < 1 day — single file, clear pattern, minimal risk
+- **M** (Medium): 1-3 days — multiple files, moderate complexity
+- **L** (Large): 3-5 days — cross-layer, new patterns, integration needed
+- **XL** (Extra Large): 5+ days — must be decomposed further before proceeding
+
+See `references/estimation-guide.md` for sizing rules and common pitfalls.
+
+Produce a `shared/contracts/feature-kickoff.md` that includes:
+- All tasks with estimates, dependencies, and statuses
+- Rollout plan (feature flag, canary, phased, or big-bang)
+- Feature-level rollback plan
+- Pipeline-level Definition of Done (not just per-agent DoD)
+- Target delivery date based on estimates + buffer
+- Acceptance criteria copied verbatim from the PRD
+
+**Buffer rules:**
+- Add 20% buffer for Medium confidence
+- Add 50% buffer for Low confidence
+- If total estimate exceeds 2 weeks, suggest splitting into multiple releases
+
+**Scope freeze:** set a scope-freeze-date in the feature-kickoff. Any change after that date requires a `shared/contracts/scope-change-request.md` — escalate to product-owner, do not silently absorb.
+
+**Status tracking:** update the feature-kickoff task table as agents complete work:
+- Not Started → In Progress → Blocked → Complete
+- If a task is Blocked for > 1 day, escalate immediately (don't wait for the next check-in)
+
+**Product-owner review:** share the feature-kickoff with product-owner before spawning any agents. Get confirmation that scope, acceptance criteria, and timeline are aligned.
+
+### 3. Assign Tasks
 
 Spawn specialist agents in the right order. Use `sessions_spawn` with `runtime: "subagent"`.
 
@@ -178,8 +209,54 @@ Once all dev + QA tasks complete, produce a consolidated summary:
 - [ ] No principles violations
 ```
 
+### 5. Post-Release: Retrospective
+
+After every feature delivery, produce a `shared/contracts/retrospective.md`:
+- Compare estimated vs actual for each task and phase
+- Document scope changes, blockers, and their root causes
+- Verify success metrics are being collected
+- Create action items for process improvements
+- Share with all participating agents and product-owner
+
+Retrospective is **mandatory** — not optional. It's how the pipeline improves over time.
+
+## Escalation Rules
+
+| Situation | Action |
+|-----------|--------|
+| Task requires cross-context DB access | Stop → escalate to architect |
+| Task scope is larger than estimated | Check with user before proceeding |
+| Agent output doesn't match ADR contract | Reject, clarify, re-assign |
+| Design decision needed during implementation | Escalate to architect, pause pipeline |
+| Security concern discovered | Flag immediately, pause pipeline |
+| Scope change requested mid-pipeline | Produce scope-change-request.md → escalate to product-owner |
+| Task blocked > 1 day | Escalate immediately, don't wait |
+
+## Task Template (pass to each agent)
+
+```markdown
+## Task Brief
+
+**Agent:** [backend-dev | frontend-dev | qa-agent | devops-agent]
+**Task:** [Clear, single-sentence description]
+**Layer:** [domain | application | infrastructure | interface | frontend | infra]
+**Context:** [Repo path, relevant files]
+**Contract:** [What interface/API/event this task implements or consumes]
+**Principles:** Read ../PRINCIPLES.md — apply FP, DDD, and Clean Code throughout
+**Expected output:** [Implementation summary in standard format]
+**Definition of done:**
+- [ ] [specific criteria]
+- [ ] Tests written and passing
+- [ ] No principles violations
+```
+
+## References
+- `references/estimation-guide.md` — T-shirt sizing, buffer rules, common pitfalls
+
 ## Principles
 - Never skip the task breakdown — surprises in execution are planning failures
+- Never skip the feature kickoff — estimation and scope agreement come before the first agent is spawned
 - Tasks should be small enough that a wrong implementation is easy to throw away
 - The pipeline is pull-based: each agent hands off to the next via you
 - You are responsible for coherence — if agent outputs don't fit together, that's your problem to resolve before reviewer
+- Retrospective is not optional — no feature is fully done until lessons are captured

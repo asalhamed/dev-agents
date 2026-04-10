@@ -291,5 +291,29 @@ mechanical issues automatically.
 - **Additive before breaking** — add new config, verify, then remove old
 - **Document the why** — manifests are not self-explanatory; commit messages matter
 
+## Feature Flags
+
+For features using gradual rollout, implement and manage feature flags. See `references/feature-flags.md` for implementation options, naming convention, and anti-patterns.
+
+**Standard rollout sequence:**
+1. Deploy all code with feature flag OFF — safe, no user impact
+2. Enable for internal users (dogfood)
+3. Enable for beta tenants ([X]%)
+4. Monitor 24-48h, then increase gradually (5% → 25% → 50% → 100%)
+5. Remove flag after 1-2 weeks stable (flag removal = scheduled task, not forgotten)
+
+**Rollback:** Disable flag — instant, no deployment needed.
+
+## Release Orchestration
+
+For multi-component releases (backend + mobile + video + IoT), follow the release sequence in `shared/contracts/release-plan.md`:
+- Deploy in dependency order (backend before mobile clients, data pipeline before consumers)
+- Verify health checks pass at each step before proceeding to the next
+- Have rollback triggers defined and agreed before starting the release
+- Monitor observability dashboards continuously during rollout phases
+
+If any rollback trigger fires, disable the feature flag immediately and notify tech-lead + product-owner.
+
 ## References
 - For metrics, logging, tracing, and health endpoint patterns → `references/observability.md`
+- For feature flag patterns, rollout strategies, and anti-patterns → `references/feature-flags.md`
