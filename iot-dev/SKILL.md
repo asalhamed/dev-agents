@@ -103,6 +103,21 @@ Before marking complete, verify:
 - [ ] Secure boot chain maintained (if platform supports it)
 - [ ] Device identity stored securely (not in plain text on flash)
 
+## Commit Convention
+
+All commits must follow the project convention from `shared/contracts/branching-and-release.md`:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf, security
+- `scope`: component area (e.g., `firmware`, `mqtt`, `ota`, `sensors`)
+- Reference both the Feature ID and your Task ID in every commit
+- One logical change per commit — don't bundle unrelated changes
+
 ## Output Contract
 `shared/contracts/device-spec.md`
 

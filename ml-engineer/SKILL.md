@@ -106,6 +106,21 @@ Before marking complete, verify:
 - [ ] Test set is truly held out (not leaked into training/validation)
 - [ ] Quantization impact on accuracy measured if deploying INT8
 
+## Commit Convention
+
+All commits must follow the project convention from `shared/contracts/branching-and-release.md`:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf, security
+- `scope`: component area (e.g., `model`, `training`, `inference`, `pipeline`, `eval`)
+- Reference both the Feature ID and your Task ID in every commit
+- One logical change per commit — don't bundle unrelated changes
+
 ## Output Contract
 `shared/contracts/model-spec.md`
 

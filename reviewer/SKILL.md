@@ -110,6 +110,10 @@ For accessibility review of frontend components, reference `frontend-dev/referen
 - No `latest` tag in any Dockerfile or K8s manifest (hard gate)
 - No `println!` / `System.out.println` / `console.log` in production paths (hard gate)
 - New dependencies justified — a new library needs a reason (flag if unjustified)
+- Commit messages follow convention: `{type}({scope}): description` with `Refs: F-NNN, T-NNN` (flag if missing)
+- PR references Feature ID and all Task IDs (flag if missing)
+- Feature branch named `feature/F-NNN-slug` (flag if not)
+- No commits directly on main (hard gate — reject immediately)
 
 ---
 

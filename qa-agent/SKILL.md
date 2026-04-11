@@ -261,6 +261,17 @@ Before writing tests, produce a brief plan:
 4. **P1 — Edge cases** (boundaries, empty, max, concurrent)
 5. **P2 — Integration** (does it work with its dependencies?)
 
+### 3b. Branch-Specific Testing
+
+Adjust test scope based on the branch context:
+- **Feature branches** — run unit + integration tests relevant to changed files; keep CI fast
+- **main** — run full test suite including E2E journey tests; coverage gate is enforced
+- **Release branches** — run full suite + smoke tests + acceptance tests; no new failures allowed
+
+Tag test results with Feature ID and branch name in the qa-report:
+- `Feature ID: F-NNN`
+- `Branch: feature/F-NNN-slug`
+
 ### 3. Run & Measure
 - Run the full suite, not just new tests
 - Check coverage report — note delta, not just final number

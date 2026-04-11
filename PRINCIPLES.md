@@ -302,3 +302,7 @@ Features exist to solve user problems. Keep this chain visible from requirements
 - **Acceptance before release.** Product-owner validates against PRD acceptance criteria before any release. Code review is necessary but not sufficient — the feature must do what the user asked for.
 - **Ship gradually.** Feature flags and phased rollout for all non-trivial features. Big-bang releases are opt-in exceptions, not the default.
 - **Learn from every feature.** Retrospective is mandatory after every delivery. No feature is fully done until lessons are captured and action items assigned.
+- **Trunk-based development.** main is always deployable. Features live on short-lived branches (`feature/F-NNN-slug`). Never commit directly to main.
+- **Every commit is traceable.** Commit messages reference Feature ID (F-NNN) and Task ID (T-NNN). At any time, you can answer “which feature is this code from?”
+- **Deploy ≠ release.** Code deploys to staging on every merge to main, behind feature flags. Release is deliberately enabling the flag for users — it is a separate decision.
+- **Environment promotion is sequential.** Feature branch → main (staging) → release tag (production). Never skip staging.

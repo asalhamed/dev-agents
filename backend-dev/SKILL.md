@@ -233,6 +233,21 @@ Before marking done:
 - [ ] Tests pass, coverage at threshold
 - [ ] No dead code, no debug logs in production paths
 
+### 4b. Commit Convention
+
+All commits must follow the project convention from `shared/contracts/branching-and-release.md`:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf, security
+- `scope`: bounded context or component name (e.g., `order`, `payment`, `alert`)
+- Reference both the Feature ID and your Task ID in every commit
+- One logical change per commit — don't bundle unrelated changes
+
 ### 5. Output Summary
 Produce your output using the exact format defined in `shared/contracts/implementation-summary.md`.
 Every required field must be filled — qa-agent and reviewer will reject incomplete summaries.

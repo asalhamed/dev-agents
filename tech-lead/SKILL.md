@@ -57,7 +57,21 @@ Produce a task breakdown before spawning anything. Show it to the user if >3 tas
 - Never bundle "implement + test" into one task — QA agent is separate
 - Never assign cross-context work to a single dev agent
 
-### 2. Estimate and Create Feature Kickoff
+### 2a. Create Feature Branch
+
+Before assigning any tasks, create the Git feature branch:
+
+```bash
+git checkout main && git pull origin main
+git checkout -b feature/F-{NNN}-{slug}
+git push -u origin feature/F-{NNN}-{slug}
+```
+
+For features with parallel work across multiple components (e.g., backend + android + video), create sub-branches under the feature branch. Sub-branches merge into the feature branch, not main. See `references/branching-guide.md`.
+
+Include the branch name in every task brief — it is a required field.
+
+### 2b. Estimate and Create Feature Kickoff
 
 After decomposing tasks, estimate each one:
 - **S** (Small): < 1 day — single file, clear pattern, minimal risk
@@ -124,6 +138,8 @@ Each brief must include:
 - Reference to `../PRINCIPLES.md` (always)
 - Relevant file paths and context
 - The contract section from `shared/contracts/architect-output.md` they must implement
+- Git branch name: `feature/F-{NNN}-{slug}` (create before first task)
+- Commit message prefix: `{type}({scope}):  Refs: F-{NNN}, T-{NNN}`
 - Which output contract they should produce:
   - `implementation-summary` — backend-dev, frontend-dev, android-dev, edge-agent, ml-engineer, analytics-engineer
   - `devops-summary` — devops-agent
@@ -252,6 +268,7 @@ Retrospective is **mandatory** — not optional. It's how the pipeline improves 
 
 ## References
 - `references/estimation-guide.md` — T-shirt sizing, buffer rules, common pitfalls
+- `references/branching-guide.md` — branch creation, sub-branches, squash merge, release tagging
 
 ## Principles
 - Never skip the task breakdown — surprises in execution are planning failures

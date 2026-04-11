@@ -101,6 +101,21 @@ Before marking complete, verify:
 - [ ] Model update mechanism doesn't interrupt active inference
 - [ ] Graceful degradation when resources exhausted
 
+## Commit Convention
+
+All commits must follow the project convention from `shared/contracts/branching-and-release.md`:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf, security
+- `scope`: component area (e.g., `inference`, `sync`, `forward`, `dashboard`)
+- Reference both the Feature ID and your Task ID in every commit
+- One logical change per commit — don't bundle unrelated changes
+
 ## Output Contract
 `shared/contracts/implementation-summary.md`
 

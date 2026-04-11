@@ -99,6 +99,21 @@ Before marking complete, verify:
 - [ ] ProGuard/R8 rules updated if new reflection-based libraries added
 - [ ] Memory leaks checked: no Activity/Context leaks in long-lived objects
 
+## Commit Convention
+
+All commits must follow the project convention from `shared/contracts/branching-and-release.md`:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf, security
+- `scope`: feature area (e.g., `live-feed`, `alerts`, `auth`, `offline`)
+- Reference both the Feature ID and your Task ID in every commit
+- One logical change per commit — don't bundle unrelated changes
+
 ## Output Contract
 `shared/contracts/implementation-summary.md`
 

@@ -291,6 +291,30 @@ mechanical issues automatically.
 - **Additive before breaking** — add new config, verify, then remove old
 - **Document the why** — manifests are not self-explanatory; commit messages matter
 
+## CI/CD Pipeline
+
+The CI/CD pipeline is defined in `shared/contracts/ci-cd-pipeline.md`. Key responsibilities:
+
+1. **Pipeline configuration** — maintain `.github/workflows/` files per the ci-cd-pipeline contract
+2. **Environment promotion** — code flows: feature branch → main (staging) → release tag (production)
+3. **Image tagging** — `main-{sha}` for staging, `v{X.Y.Z}` for production, never `:latest`
+4. **Feature flag deployment** — new features deploy with flags OFF; enable via gradual rollout
+5. **Release orchestration** — follow `shared/contracts/release-plan.md` for multi-component releases
+
+For pipeline patterns and GitHub Actions examples, see `references/ci-cd-pipelines.md`.
+
+## Release Process
+
+1. All features for the release are merged to main and deployed to staging
+2. Acceptance tests pass on staging (qa-agent)
+3. Product-owner signs off (acceptance-test contract)
+4. Tag release from main: `git tag -a vX.Y.Z`
+5. CI builds release images with version tag
+6. Manual approval in GitHub triggers production deployment
+7. Feature flags enabled gradually per rollout plan
+8. Monitor rollback triggers for 48h post-GA
+9. Release complete — update docs, close features, schedule retrospective
+
 ## Feature Flags
 
 For features using gradual rollout, implement and manage feature flags. See `references/feature-flags.md` for implementation options, naming convention, and anti-patterns.

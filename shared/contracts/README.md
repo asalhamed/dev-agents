@@ -61,7 +61,7 @@ Each agent must:
 2. **Produce complete outputs** — never hand off with missing required fields
 3. **Use exact field names** — field names are part of the contract; don't rename them
 
-## All Contracts (36)
+## All Contracts (38)
 
 ### Core Engineering Contracts
 | Contract | Producer | Consumer(s) | Phase |
@@ -101,6 +101,12 @@ Each agent must:
 | scope-change-request.md | any agent | product-owner, tech-lead | Delivery |
 | release-plan.md | tech-lead + devops-agent | product-owner, devops-agent | Delivery |
 | retrospective.md | tech-lead | all agents, product-owner | Delivery |
+
+### Standing Policy Contracts
+| Contract | Type | Consumers | Phase |
+|----------|------|-----------|-------|
+| branching-and-release.md | Standing policy | all code-producing agents | Policy |
+| ci-cd-pipeline.md | Standing policy | devops-agent, tech-lead | Policy |
 
 ### Business Operations Contracts
 | Contract | Producer | Consumer(s) | Phase |

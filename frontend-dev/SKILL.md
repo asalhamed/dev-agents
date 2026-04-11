@@ -248,6 +248,21 @@ Minimum:
 - [ ] No `console.log` in production code
 - [ ] No hardcoded strings that belong in i18n (if project uses it)
 
+### 5b. Commit Convention
+
+All commits must follow the project convention from `shared/contracts/branching-and-release.md`:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf, security
+- `scope`: component or feature area (e.g., `dashboard`, `live-feed`, `alerts`)
+- Reference both the Feature ID and your Task ID in every commit
+- One logical change per commit — don't bundle unrelated changes
+
 ### 6. Output Summary
 Produce your output using the exact format defined in `shared/contracts/implementation-summary.md`.
 Every required field must be filled — qa-agent and reviewer will reject incomplete summaries.

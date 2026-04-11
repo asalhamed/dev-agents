@@ -19,9 +19,11 @@
 
 ### Context
 **Repo:** [path or URL]
+**Branch:** `feature/F-{NNN}-{slug}` (create if first task for this feature)
 **Relevant files:** [list of paths the agent should read first]
 **Stack:** [Rust | Scala 3 | Scala 2 | TypeScript | Vue/Nuxt | React | Leptos | K8s]
 **ADR:** [ADR-NNN reference or "N/A — small task"]
+**Commit prefix:** `{type}({scope}):  Refs: F-{NNN}, T-{NNN}`
 
 ### Contract to Implement or Consume
 <!-- REQUIRED: What interface/API/event/schema does this task implement or use? -->
@@ -74,12 +76,14 @@ Before starting:
 
 ### Context
 **Repo:** /workspace/order-service
+**Branch:** `feature/F-012-live-video-alerts`
 **Relevant files:**
   - src/domain/order/aggregate.rs (or Order.scala)
   - src/domain/order/events.rs (or OrderEvents.scala)
   - src/domain/order/errors.rs (or OrderError.scala)
 **Stack:** Scala 3
 **ADR:** ADR-007: Order Confirmation via Domain Event
+**Commit prefix:** `feat(order):  Refs: F-012, T-001`
 
 ### Contract to Implement or Consume
 OrderConfirmed event schema (from ADR-007):
@@ -127,12 +131,14 @@ confirm() must:
 
 ### Context
 **Repo:** /workspace/order-service
+**Branch:** `feature/F-012-live-video-alerts`
 **Relevant files:**
   - src/domain/money.rs (new file)
   - src/domain/errors.rs (add DomainError variants)
   - src/domain/mod.rs (add pub mod money)
 **Stack:** Rust
 **ADR:** ADR-009: Monetary Values as Value Objects
+**Commit prefix:** `feat(order):  Refs: F-012, T-002`
 
 ### Contract to Implement or Consume
 Money value object (from ADR-009):
