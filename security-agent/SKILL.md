@@ -140,6 +140,56 @@ See `shared/contracts/security-scan.md` for required fields.
 - **Phase 1:** `threat-model` contract → consumed by tech-lead
 - **Phase 2:** `security-scan` contract → consumed by reviewer
 
+## Multi-Service Security
+
+In a multi-repo microservices architecture, review these additional concerns:
+
+### Service-to-Service Authentication
+- Every inter-service call must be authenticated — no unauthenticated internal traffic
+- Preferred: mutual TLS (mTLS) between services within the cluster
+- Alternative: JWT with service identity (`sub` = service name, short-lived, rotated)
+- API keys only for external integrations, never between internal services
+- Verify: check K8s NetworkPolicies enforce default-deny with explicit allow rules
+
+### Secret Isolation
+- Each service must have its own secrets (database credentials, API keys, signing keys)
+- No shared credentials across services — if one service is compromised, blast radius is limited
+- Secrets must come from vault/ExternalSecret — never environment variable literals in manifests
+- Verify: grep for identical secret names across service K8s manifests
+
+### Event Schema Privacy
+- Events published to Kafka/MQTT are readable by any consumer with topic access
+- Audit event schemas in `platform-contracts/events/` for PII leakage:
+  - Email addresses, phone numbers, IP addresses, device locations → must be encrypted or excluded
+  - User IDs are acceptable (pseudonymous) but not user names or contact info
+- If PII must be in events, use field-level encryption with key management
+
+### Network Policies
+```yaml
+# Every service must have a NetworkPolicy — default deny ingress
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {service}-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: {service}
+  policyTypes: [Ingress]
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: {allowed-caller}
+    ports:
+    - port: 8080
+```
+
+### Contract Surface Audit
+- Every endpoint in `platform-contracts/api/*.yaml` is an attack surface
+- Review for: unnecessary exposure (internal-only endpoints made public), excessive data in responses, missing rate limiting, missing authentication
+- Flag any endpoint that returns PII without explicit need
+
 ## Escalation Rules
 
 | Situation | Action |

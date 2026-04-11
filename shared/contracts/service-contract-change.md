@@ -64,3 +64,40 @@ If **NOT backward compatible**, provide a migration plan:
 - [ ] If breaking: migration plan with ordered rollout steps
 - [ ] Version bump follows semver (additive = minor, breaking = major)
 - [ ] Deprecation timeline specified for old version
+
+## Example (valid — additive change)
+
+```markdown
+## SERVICE CONTRACT CHANGE
+
+### Change Identity
+**Change ID:** SCC-003
+**Feature reference:** F-012
+**Requesting service:** video-service
+**Requesting team:** Video team
+
+### Contract Being Changed
+**Contract repo:** platform-contracts
+**Contract file:** events/video-events.avsc
+**Contract type:** Avro
+
+### Change Description
+**Type:** additive
+**Summary:** Adding `MotionDetected` event type to video-events schema with fields: cameraId, timestamp, confidenceScore, boundingBoxes
+
+### Affected Consumers
+| Consumer service | Consumer repo | Impact | Action needed |
+|-----------------|---------------|--------|---------------|
+| alert-service | alert-service | Subscribe to new event type | Add consumer for MotionDetected |
+| data-platform | data-platform | New event in ingestion | Add MotionDetected to ingestion pipeline |
+| ml-pipeline | ml-pipeline | None (doesn't consume video-events yet) | None |
+
+### Compatibility Analysis
+**Backward compatible:** yes — new event type, existing consumers ignore unknown types
+**Forward compatible:** yes
+
+### Version Strategy
+**Current version:** v2.3.0
+**New version:** v2.4.0 (minor — additive)
+**Deprecation timeline:** N/A — no deprecation
+```

@@ -88,3 +88,39 @@ When creating a brand-new service, complete these steps in order:
 7. **Add entry to the ownership model table** in the architecture documentation
 8. **Write `README.md`** — must include: purpose, how to run locally, links to contracts
 9. **Pass initial contract tests** — CI must be green before any feature work begins
+
+## Example (valid — new service)
+
+```markdown
+## New Service: alert-service
+
+**Bounded context:** Alerting
+**Stack:** Rust
+**Team:** Comms team
+**Repo:** github.com/org/alert-service
+
+### CONTRACT_DEPS.md
+
+## This service produces:
+- `events/alert-events.avsc` — Alert domain events (Kafka topic `alert.events`)
+
+## This service consumes:
+- `events/device-telemetry.avsc` — from device-fleet-service (Kafka topic `device.telemetry`)
+- `events/video-events.avsc` — from video-service (Kafka topic `video.events`)
+
+## Contract test commands:
+- Producer tests: `cargo test --features contract-producer`
+- Consumer tests: `cargo test --features contract-consumer`
+
+## platform-contracts version: v2.4.0
+
+### Checklist
+- [x] Repo created from template
+- [x] SKILL.md structure followed (domain/application/infrastructure/interface)
+- [x] CONTRACT_DEPS.md written
+- [x] CI pipeline configured
+- [x] Contract tests passing
+- [x] docker-compose.yml with local dependencies
+- [x] Added to infrastructure/docker-compose.dev.yml
+- [x] Added to service-dependency-map
+```

@@ -93,6 +93,9 @@ Contracts are defined in terms of domain types, not infrastructure types.
 
 ### 5b. Service Boundary and Repo Mapping
 
+For detailed patterns on service decomposition, inter-service communication, contract versioning,
+and database isolation, see `references/multi-repo-patterns.md`.
+
 For features that span multiple bounded contexts:
 
 1. **Identify which repos are affected** — map each aggregate/event to a service repo

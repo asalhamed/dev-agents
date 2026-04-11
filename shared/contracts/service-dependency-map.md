@@ -54,3 +54,13 @@ _Fill in this table for your organization's services. Example below:_
 - Update this file whenever a new service is added or a contract is created/deprecated
 - This file is the source of truth for "who will break if I change X"
 - Maintained by the architect agent; changes require a PR review
+
+---
+
+## Validation (architect maintains)
+
+- [ ] Every service repo is listed
+- [ ] Every produced and consumed contract is listed per service
+- [ ] No orphan contracts (every contract has at least one producer AND one consumer)
+- [ ] Map updated whenever a new service or contract is added
+- [ ] Breaking a produced contract triggers review of all listed consumers

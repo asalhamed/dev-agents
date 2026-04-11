@@ -59,5 +59,32 @@ _Add project-specific domain terms below as they are defined in ADRs._
 
 ---
 
+## Delivery & Process Terms
+
+| Term | Definition |
+|------|-----------|
+| **Feature Kickoff** | A contract produced by tech-lead that captures scope, estimation, rollout plan, and pipeline-level Definition of Done for a feature |
+| **Acceptance Testing** | Validation of a feature against PRD acceptance criteria (not code quality — that's code review) |
+| **Scope Change Request** | Formal request to modify feature scope during implementation; requires product-owner approval |
+| **Feature Flag** | A configuration toggle that controls whether a feature is visible to users, enabling gradual rollout without separate deployments |
+| **Gradual Rollout** | Deploying code to production but enabling it progressively: internal → beta (5%) → GA (100%) |
+| **Retrospective** | Post-delivery review capturing timeline accuracy, blockers, scope changes, and action items for improvement |
+
+## Multi-Repo & Microservice Terms
+
+| Term | Definition |
+|------|-----------|
+| **Platform Contracts** | A dedicated repository (`platform-contracts`) that is the single source of truth for all inter-service API specs, event schemas, and protocol definitions |
+| **Contract-First Development** | Defining the inter-service contract (OpenAPI, Avro, Protobuf) before writing implementation code |
+| **Producer Contract Test** | A test in the producing service's CI that verifies the service's actual output matches its declared contract spec |
+| **Consumer Contract Test** | A test in the consuming service's CI that verifies the service can handle all valid messages defined in the producer's contract |
+| **Service Contract Change** | A formal request to modify a shared contract, requiring compatibility analysis and ordered rollout across all consuming services |
+| **Backward Compatibility** | A contract change where existing consumers continue to work without modification (e.g., adding an optional field) |
+| **Schema Registry** | A centralized service that stores and validates event schemas, enforcing compatibility rules on schema evolution |
+| **Trunk-Based Development** | A branching strategy where `main` is always deployable and feature work happens on short-lived feature branches |
+| **Independent Deployability** | The property that a service can be built, tested, and deployed without touching any other service's repository |
+
+---
+
 _This glossary is maintained by the architect agent. When a new ADR introduces domain terms,
 they should be added here under "Project-Specific Terms"._

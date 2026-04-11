@@ -64,3 +64,51 @@
 ### Release Sign-Off
 **Approved by:** product-owner
 **Date:** [ISO 8601]
+
+## Example (valid)
+
+```markdown
+## RELEASE PLAN
+
+### Feature Reference
+**Feature ID:** F-012
+**Release version:** v1.3.0
+
+### Pre-Release Checklist
+- [x] All acceptance criteria pass
+- [x] Reviewer approved
+- [x] Security scan clean
+- [x] Video latency <3s p95 (perf-report)
+- [x] Observability instrumented
+- [x] Documentation updated
+- [x] Feature flag `feature_live_video_alerts` configured (OFF)
+- [x] Stakeholder demo completed on staging
+- [x] Database migrations tested on staging
+- [x] Rollback plan tested
+
+### Release Sequence
+| Step | Action | Owner | Verify |
+|------|--------|-------|--------|
+| 1 | Deploy video-service to staging | devops-agent | Stream test passes |
+| 2 | Deploy backend (alert API) to staging | devops-agent | Health check + alert test |
+| 3 | Deploy edge-runtime update to 1 test device | iot-dev | Motion detection triggers |
+| 4 | Upload Android APK to Play Store internal | android-dev | Install + smoke test |
+| 5 | Full E2E on staging | qa-agent | All journeys pass |
+| 6 | Stakeholder demo | product-owner | Sign-off received |
+| 7 | Tag v1.3.0 in all repos | tech-lead | Tags pushed |
+| 8 | Deploy to production (same order) | devops-agent | Health checks green |
+| 9 | Enable flag for internal team | devops-agent | Dogfood 24h |
+| 10 | Enable for beta (5%) | devops-agent | Monitor error rate |
+| 11 | Full rollout (100%) | devops-agent | Monitor 48h |
+
+### Rollback Triggers
+| Signal | Action |
+|--------|--------|
+| Error rate > 1% for 5 min | Disable feature flag |
+| Video latency > 5s p95 for 15 min | Disable feature flag |
+| >3 beta user complaints about false alerts | Pause rollout, investigate thresholds |
+
+### Release Sign-Off
+**Approved by:** product-owner
+**Date:** 2026-05-14T11:00:00Z
+```

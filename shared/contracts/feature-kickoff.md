@@ -72,3 +72,89 @@
 | Date | Phase | Update |
 |------|-------|--------|
 | [ISO 8601] | Kickoff | Feature kickoff produced by tech-lead |
+
+---
+
+## Validation (product-owner must check before approving kickoff)
+
+- [ ] Feature ID is unique (F-NNN)
+- [ ] PRD and ADR references present (or "N/A" with reason)
+- [ ] Acceptance criteria copied verbatim from PRD
+- [ ] Success metrics have baseline AND target values
+- [ ] Every task has an estimate (S/M/L/XL — no XL without decomposition)
+- [ ] Target delivery date is realistic (estimate + buffer)
+- [ ] Rollout plan specified (feature-flag / canary / phased / big-bang)
+- [ ] Rollback plan documented (feature-level, not just infra)
+- [ ] Pipeline-level Definition of Done is complete
+
+## Example (valid)
+
+```markdown
+## FEATURE KICKOFF
+
+### Feature Identity
+**Feature ID:** F-012
+**Title:** Live Video Feed with Motion-Based Alerts
+**PRD reference:** PRD-012
+**ADR reference:** ADR-015
+**Priority:** P1 (high)
+
+### Scope
+**In scope:**
+- Live RTSP→WebRTC video viewing in Android app
+- Edge-side motion detection triggering alerts
+- Push notification delivery for motion alerts
+**Out of scope:**
+- Video recording/playback (deferred to F-015)
+- Multi-camera simultaneous viewing (deferred)
+**Scope freeze date:** 2026-05-01
+
+### Acceptance Criteria (from PRD)
+- [ ] AC-1: Given a camera is online, when user taps the camera feed, then live video displays within 3 seconds
+- [ ] AC-2: Given motion is detected by edge device, when alert threshold is exceeded, then push notification delivered within 5 seconds
+- [ ] AC-3: Given user receives alert, when user taps notification, then app opens to the relevant camera feed
+
+### Success Metrics
+| Metric | Baseline | Target | Measurement method |
+|--------|----------|--------|-------------------|
+| Video load time | N/A (new) | <3s p95 | Client-side instrumentation |
+| Alert delivery latency | N/A (new) | <5s p95 | Edge timestamp → push received |
+| Daily active video viewers | 0 | 50 within 30 days | Analytics event tracking |
+
+### Estimation
+| Task ID | Agent | Description | Estimate | Actual | Status |
+|---------|-------|-------------|----------|--------|--------|
+| T-001 | video-streaming | RTSP→WebRTC bridge | L | — | Not started |
+| T-002 | edge-agent | Motion detection model | M | — | Not started |
+| T-003 | backend-dev | Alert API + push notification | M | — | Not started |
+| T-004 | android-dev | Live feed viewer + alert UI | M | — | Not started |
+| T-005 | devops-agent | K8s manifests + feature flag | S | — | Not started |
+| T-006 | qa-agent | Tests + acceptance tests | M | — | Not started |
+
+**Total estimated:** 12 days
+**Target delivery:** 2026-05-15
+**Confidence:** Medium (first video feature — adding 20% buffer)
+
+### Rollout Plan
+**Strategy:** feature-flag
+**Feature flag name:** `feature_live_video_alerts`
+**Rollout phases:**
+1. Internal dogfood (team only) — 2 days
+2. Beta customers (5% of fleet) — 3 days
+3. General availability — full rollout
+
+### Rollback Plan
+**Feature-level rollback:** Disable feature flag `feature_live_video_alerts` — instant, no deployment
+**Data rollback:** No new tables; alert history rows can remain (no cleanup needed)
+
+### Definition of Done (Pipeline-Level)
+- [ ] All acceptance criteria pass
+- [ ] Code review approved
+- [ ] Security scan clean
+- [ ] Video latency within SLO (<3s p95)
+- [ ] Observability instrumented
+- [ ] Documentation updated
+- [ ] Feature flag configured
+- [ ] Stakeholder demo completed
+- [ ] Release notes drafted
+```

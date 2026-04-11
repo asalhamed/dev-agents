@@ -109,6 +109,22 @@ Before marking complete, verify:
 - [ ] Monitoring: consumer lag, throughput, error rate dashboards exist
 - [ ] Data lineage documented (source → transformations → destination)
 
+### Commit Convention
+
+All commits must follow the project commit convention:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf
+- `scope`: pipeline name or data domain (e.g., `telemetry-ingestion`, `video-storage`, `kafka`)
+- Reference both the Feature ID and your Task ID in every commit
+
+See `shared/contracts/branching-and-release.md` for the full convention.
+
 ## Output Contract
 `shared/contracts/implementation-summary.md`
 

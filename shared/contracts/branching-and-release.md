@@ -172,3 +172,39 @@ release/*:
     - hotfix/*                  # only hotfixes on release branches
   no_direct_push: true
 ```
+
+---
+
+## Validation (reviewer checks on every PR)
+
+- [ ] Branch name follows convention: `feature/F-NNN-slug`, `hotfix/H-NNN-slug`, or `release/vX.Y.Z`
+- [ ] All commits reference F-NNN or H-NNN
+- [ ] PR description includes Feature ID, Task IDs, and ADR reference
+- [ ] Feature flag name specified (if applicable)
+- [ ] No commits directly on main
+
+## Example (valid PR description)
+
+```markdown
+## PR: feature/F-012-live-video-alerts → main
+
+### Feature
+**Feature ID:** F-012
+**Title:** Live Video Feed with Motion-Based Alerts
+**ADR:** ADR-015
+
+### Tasks Completed
+- [x] T-001 — video-streaming — RTSP→WebRTC bridge
+- [x] T-002 — edge-agent — Motion detection
+- [x] T-003 — backend-dev — Alert API + push
+- [x] T-004 — android-dev — Live feed viewer
+- [x] T-005 — devops-agent — K8s + feature flag
+- [x] T-006 — qa-agent — Tests + acceptance
+
+### Feature Flag
+**Flag name:** `feature_live_video_alerts`
+**Initial state:** OFF
+
+### Rollback
+Disable feature flag — instant, no deployment needed.
+```

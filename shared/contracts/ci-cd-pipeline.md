@@ -185,3 +185,36 @@ Feature Request
 - "What's the status of feature F-012?" → feature-kickoff status table
 - "Why was this decision made?" → ADR-NNN referenced in feature-kickoff
 - "Did we meet our goals?" → measurement-plan metrics in retrospective
+
+---
+
+## Validation (devops-agent checks per service)
+
+- [ ] CI runs on every push (feature branches + main)
+- [ ] All 7 stages present (build, test, coverage, security, integration, artifacts, deploy)
+- [ ] Coverage threshold enforced (Rust 80%, Scala/TS 75%)
+- [ ] Contract tests run against pinned platform-contracts version
+- [ ] Image tags use SHA for staging, version for production — never `:latest`
+- [ ] Production deploy requires manual approval
+- [ ] Feature flag verified OFF after production deploy
+
+## Example (valid — Rust service CI summary)
+
+```markdown
+## CI PIPELINE STATUS: video-service
+
+**Branch:** feature/F-012-live-video-alerts
+**Commit:** abc123f
+**Platform-contracts version:** v2.4.0
+
+| Stage | Status | Details |
+|-------|--------|---------|
+| Build | ✅ | cargo build — 45s |
+| Lint | ✅ | cargo fmt + clippy — 12s |
+| Unit tests | ✅ | 87 tests passed — 8s |
+| Coverage | ✅ | 83% (threshold: 80%) |
+| Security scan | ✅ | cargo audit — 0 vulnerabilities |
+| Contract tests | ✅ | Producer: api/video-service.yaml ✅, Consumer: events/device-telemetry.avsc ✅ |
+| Integration tests | ✅ | 12 tests with testcontainers — 45s |
+| Image build | ✅ | ghcr.io/org/video-service:ci-abc123f |
+```

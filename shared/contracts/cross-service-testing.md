@@ -120,3 +120,29 @@ Include contract test results in the `qa-report.md`:
 | Consumer | events/device-telemetry.avsc | ✅ All sample events handled |
 | Consumer (unknown variants) | events/order-events.avsc | ✅ Unknown variants handled gracefully |
 ```
+
+---
+
+## Validation (qa-agent checks per service)
+
+- [ ] Producer contract tests exist for every contract this service produces
+- [ ] Consumer contract tests exist for every contract this service consumes
+- [ ] Unknown variant handling tested (consumer ignores unknown event types gracefully)
+- [ ] Contract test results included in qa-report
+- [ ] E2E journey tests defined for features crossing 2+ services
+
+## Example (valid — contract test report section)
+
+```markdown
+### Contract Test Results
+
+**Platform-contracts version:** v2.4.0
+
+| Type | Contract | Result | Details |
+|------|----------|--------|---------|
+| Producer | api/video-service.yaml | ✅ | 15/15 endpoints match spec |
+| Producer | events/video-events.avsc | ✅ | 3/3 event types match schema |
+| Consumer | events/device-telemetry.avsc | ✅ | All 8 sample messages handled |
+| Consumer | mqtt/device-fleet.yaml | ✅ | 12/12 topic messages parsed |
+| Unknown variant | events/device-telemetry.avsc | ✅ | Unknown fields ignored gracefully |
+```

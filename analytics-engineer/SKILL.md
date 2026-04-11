@@ -103,6 +103,22 @@ Before marking complete, verify:
 - [ ] Alert thresholds reasonable (not too noisy, not too quiet)
 - [ ] Performance acceptable at production data volumes
 
+### Commit Convention
+
+All commits must follow the project commit convention:
+
+```
+{type}({scope}): {description}
+
+Refs: F-{NNN}, T-{NNN}
+```
+
+- `type`: feat, fix, refactor, test, docs, chore, perf
+- `scope`: model or dashboard name (e.g., `fleet-health`, `alert-dashboard`, `dbt-orders`)
+- Reference both the Feature ID and your Task ID in every commit
+
+See `shared/contracts/branching-and-release.md` for the full convention.
+
 ## Output Contract
 `shared/contracts/implementation-summary.md`
 
