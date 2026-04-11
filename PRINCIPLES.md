@@ -221,6 +221,15 @@ class PostgresOrderRepository[F[_]: Async](xa: Transactor[F]) extends OrderRepos
 
 ---
 
+## 🏭 Multi-Repo Microservice Principles
+- **Contracts are the API** — services communicate ONLY through defined contracts in `platform-contracts`; never share databases, never share libraries with business logic
+- **Contract-first development** — define the contract before writing code; implementation must match the contract, not the other way around
+- **Independent deployability** — every service can be built, tested, and deployed without touching any other service's repo
+- **Backward compatibility by default** — additive changes to contracts are safe; breaking changes require a migration plan with ordered rollout using the expand-contract pattern
+- **Own your data** — each service owns its database; if you need another service's data, consume their events or call their API
+- **Contract tests are mandatory** — every service runs producer and consumer contract tests in CI; no merge without passing contract tests
+- **Consumers must handle unknown variants** — all event handlers must include a catch-all arm; exhaustive matching on event types without a default will break when new event types are added
+
 ## 🔗 How These Principles Work Together
 
 FP + DDD + Clean Code are not separate methodologies — they reinforce each other:

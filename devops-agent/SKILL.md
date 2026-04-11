@@ -271,6 +271,60 @@ The security checklist in the contract is a hard gate — the reviewer blocks on
 Before producing the summary, run `scripts/validate_manifests.sh` on the repo to catch
 mechanical issues automatically.
 
+## Multi-Repo CI/CD
+
+Each service repo has its own CI/CD pipeline. Key differences from monorepo:
+
+### Per-Service Pipeline
+Every service repo has `.github/workflows/ci.yml` that:
+1. Builds and tests ONLY that service (not everything)
+2. Pulls platform-contracts at pinned version
+3. Runs contract tests (producer + consumer)
+4. Builds Docker image tagged with `{service}:{sha}`
+5. Pushes to container registry
+
+See `references/multi-repo-cicd.md` for full CI templates, rollback strategy, and deployment orchestration.
+
+### Contract Verification in CI
+```yaml
+# In every service CI:
+- name: Pull platform-contracts
+  run: |
+    CONTRACTS_VERSION=$(grep 'platform-contracts version' CONTRACT_DEPS.md | grep -oP 'v[\d.]+')
+    git clone --depth 1 --branch $CONTRACTS_VERSION https://github.com/org/platform-contracts.git /tmp/contracts
+
+- name: Producer contract tests
+  run: cargo test --features contract-producer
+  env:
+    CONTRACTS_PATH: /tmp/contracts
+
+- name: Consumer contract tests
+  run: cargo test --features contract-consumer
+  env:
+    CONTRACTS_PATH: /tmp/contracts
+```
+
+### Independent Deployment
+Each service deploys independently:
+- Merge to main → auto-deploy to staging (that service only)
+- Release tag → manual approve → deploy to production (that service only)
+- Feature flags control feature visibility, not deployment timing
+
+### Coordinated Releases
+For features spanning multiple services, the release-plan specifies deployment order.
+Deploy producers before consumers. Verify at each step.
+
+### Local Development
+Each service has a `docker-compose.yml` for local dev. For full-stack local dev (all services),
+use `infrastructure/docker-compose.dev.yml`.
+
+> **Note on compose drift:** Service-local `docker-compose.yml` and
+> `infrastructure/docker-compose.dev.yml` will drift over time. Mitigate by either:
+> (a) having each service define a Compose fragment that `infrastructure/docker-compose.dev.yml`
+> imports via the `include:` key, or (b) accepting the duplication and adding a weekly CI
+> check that verifies service-local compose files still boot successfully.
+> Pick one approach and enforce it org-wide.
+
 ## Escalation Rules
 
 | Situation | Action |

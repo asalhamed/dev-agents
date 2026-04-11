@@ -159,6 +159,47 @@ These three can run in parallel. Collect their outputs and forward everything to
 **Post-approval** (after reviewer approves):
 - `docs-agent` — generates/updates documentation, produces `shared/contracts/docs-summary.md`
 
+### 2d. Multi-Repo Coordination
+
+When a feature spans multiple repos:
+
+1. **Create feature branches in EACH affected repo** using the same Feature ID:
+   ```
+   order-service:          feature/F-012-live-video-alerts
+   video-service:          feature/F-012-live-video-alerts
+   monitoring-android:     feature/F-012-live-video-alerts
+   platform-contracts:     feature/F-012-live-video-alerts
+   ```
+   Same F-NNN prefix across all repos makes cross-repo tracing possible.
+
+2. **Contract changes go first:**
+   - platform-contracts PR must merge BEFORE any service that depends on the new contract
+   - Tag a new version of platform-contracts after merge
+   - Service repos pin to the new version
+
+3. **Deployment order matters:**
+   ```
+   platform-contracts (merge + tag new version)
+     → producer services (deploy first — they produce the new contract)
+     → consumer services (deploy second — they consume the new contract)
+     → frontend web (deploy last — they consume APIs)
+     → mobile (parallel track — Play Store review is async; does not block backend deployment)
+   ```
+
+4. **In the feature-kickoff, specify:**
+   ```
+   ### Multi-Repo Plan
+   | Step | Repo | Task IDs | Deploys after |
+   |------|------|----------|---------------|
+   | 1 | platform-contracts | T-001 | — |
+   | 2 | video-service | T-002, T-003 | platform-contracts |
+   | 3 | device-fleet-service | T-004 | platform-contracts |
+   | 4 | monitoring-android | T-005, T-006 | video-service API (parallel — async store review) |
+   ```
+
+5. **Cross-repo blockers are escalated immediately.** If video-service can't proceed because
+   order-service hasn't deployed yet, that's a pipeline coordination issue — don't wait silently.
+
 ### 3. Collect & Merge
 
 Use `sessions_yield` after spawning to receive results.

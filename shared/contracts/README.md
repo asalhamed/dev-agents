@@ -121,3 +121,14 @@ Each agent must:
 | hiring-plan.md | hr | finance | Business Ops |
 | financial-report.md | finance | growth-strategist, product-owner | Business Ops |
 
+
+## Multi-Repo Contracts
+
+These contracts support multi-repo microservice coordination:
+
+| Contract | Purpose |
+|----------|---------|
+| [`service-contract-change.md`](service-contract-change.md) | Request to change a shared API/event contract in `platform-contracts` |
+| [`service-dependency-map.md`](service-dependency-map.md) | Standing reference of which services produce/consume which contracts |
+| [`cross-service-testing.md`](cross-service-testing.md) | Contract testing strategy (producer, consumer, unknown variant safety) |
+| [`repo-setup.md`](repo-setup.md) | Standard repo structure + new service onboarding checklist |

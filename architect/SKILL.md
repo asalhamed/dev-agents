@@ -91,6 +91,32 @@ Specify what each component/service exposes:
 
 Contracts are defined in terms of domain types, not infrastructure types.
 
+### 5b. Service Boundary and Repo Mapping
+
+For features that span multiple bounded contexts:
+
+1. **Identify which repos are affected** — map each aggregate/event to a service repo
+2. **Define contracts in `platform-contracts`** — NOT in individual service repos
+3. **Specify contract change type** — additive (safe) or breaking (needs migration plan)
+4. **If creating a new service:** define the repo structure per `shared/contracts/repo-setup.md`
+
+**Multi-repo rules:**
+- Every inter-service interface MUST be defined in `platform-contracts`
+- Services communicate ONLY through defined contracts — never direct DB access, never shared libraries with business logic
+- Event schemas use Avro/Protobuf with a schema registry (choose one: Confluent Schema Registry, Apicurio Registry, or AWS Glue Schema Registry — this decision must be recorded in an ADR before implementation) — NOT arbitrary JSON
+- API specs use OpenAPI 3.1 — consumer SDKs are auto-generated from specs
+- When an ADR introduces a new bounded context, it also specifies the new repo and its CONTRACT_DEPS.md
+
+Include in the architect-output:
+```
+### Repos Affected
+| Repo | Changes | Contract changes |
+|------|---------|------------------|
+| order-service | New aggregate method | Produces new OrderConfirmed event |
+| notification-service | New event consumer | Consumes OrderConfirmed event |
+| platform-contracts | New event schema | events/order-events.avsc updated |
+```
+
 ### 6. Hand off
 
 Your architect-output is consumed by three agents. Produce it using `shared/contracts/architect-output.md`.

@@ -115,6 +115,15 @@ For accessibility review of frontend components, reference `frontend-dev/referen
 - Feature branch named `feature/F-NNN-slug` (flag if not)
 - No commits directly on main (hard gate — reject immediately)
 
+### Multi-Repo Checks
+- [ ] No inter-service communication outside defined contracts (no direct DB queries, no shared libraries with business logic)
+- [ ] CONTRACT_DEPS.md is up to date (lists all produced and consumed contracts)
+- [ ] platform-contracts version is pinned (not floating on main)
+- [ ] Contract tests exist for every consumed contract
+- [ ] If this PR changes a produced contract: service-contract-change request filed and approved
+- [ ] No hardcoded service URLs — use service discovery or config
+- [ ] Event consumers include a catch-all/wildcard arm for unknown variants (Rust/Scala exhaustive match safety)
+
 ---
 
 ## Language-Specific Review Notes
