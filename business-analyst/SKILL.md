@@ -8,12 +8,6 @@ description: >
   "business process", "requirements analysis", "gap analysis", "stakeholder requirements".
   Use after product-owner produces PRD, before ux-researcher and architect.
   NOT for technical decisions (use architect) or UI design (use ui-designer).
-metadata:
-  openclaw:
-    emoji: 📊
-    requires:
-      skills:
-        - product-owner
 ---
 
 # Business Analyst Agent

@@ -8,15 +8,6 @@ description: >
   "Arduino", "device management", "IoT hub", "device shadow".
   Supports Rust (embedded), C/C++, MicroPython, and Arduino framework.
   NOT for cloud services (use backend-dev) or mobile apps (use android-dev).
-metadata:
-  openclaw:
-    emoji: 🔌
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
 ---
 
 # IoT Dev Agent
@@ -66,17 +57,30 @@ For MQTT work, define:
 - Apply calibration offsets at device level
 - Timestamp readings with device clock (sync via NTP when connected)
 
-### 5. OTA Updates
-- Implement **atomic update**: download → verify signature → swap partition → reboot
-- Always keep rollback partition — failed update must boot previous firmware
-- Use ed25519 or similar for firmware signature verification
-- Report update status (downloading/verifying/applying/success/rolled-back)
+### 5. OTA Updates — Device-Side Hooks
+Fleet OTA orchestration (signed metadata, staged rollout, attestation, rollback drills)
+is owned by **`firmware-ota-agent`**. This agent implements the device-side receiving
+end:
+- **Atomic update**: download → verify signature + metadata chain → swap A/B slot → reboot
+- **Rollback partition** always present; watchdog flips back on failed boot
+- **Signature verification** against a device trust anchor baked at manufacturing
+- **Anti-rollback counter** enforced in hardware where possible, manifest `min_version` always
+- **Status reporting** (downloading / verifying / applying / success / rolled-back) emitted
+  as typed telemetry so the fleet OTA plane can gate cohort advancement
 
-### 6. Device Provisioning
-- Use **certificate-based authentication** (X.509 client certs)
-- Never hardcode credentials — use provisioning flow (factory provisioning or first-boot enrollment)
-- Support device identity rotation
-- Store credentials in secure element or encrypted flash partition
+See `firmware-ota-agent/SKILL.md` for the metadata model (TUF / Uptane / SUIT), key
+hierarchy, staged rollout, and incident response.
+
+### 6. Device Provisioning and Hardware Attestation
+- **Certificate-based authentication** — X.509 client certs; rotate identity over the
+  lifetime of the device
+- **Never hardcode credentials** — provisioning flow (factory or first-boot enrollment)
+- **Secure storage** — credentials in a secure element, TPM, or encrypted flash partition
+- **Secure boot chain** — verified bootloader → verified kernel → verified userspace
+- **Hardware attestation** — TPM 2.0 quote, ARM TrustZone, or SE-backed attestation
+  presented at every trust-critical operation (OTA fetch, pairing, cloud enrollment)
+- See `references/hardware-attestation.md` for patterns and `firmware-ota-agent/SKILL.md`
+  for how attestation integrates with the fleet update plane
 
 ### 7. Write Tests
 - **Integration tests** for protocol handlers (MQTT connect/subscribe/publish cycles)
@@ -125,10 +129,14 @@ Refs: F-{NNN}, T-{NNN}
 - `references/mqtt-patterns.md` — Topic design, QoS strategy, LWT patterns
 - `references/device-provisioning.md` — Certificate enrollment, identity management
 - `references/embedded-rust.md` — Embassy/RTIC patterns, no-std development
-- `references/ota-updates.md` — Atomic update, signature verification, rollback
+- `references/ota-updates.md` — Device-side atomic update, signature verification, rollback
+- `references/hardware-attestation.md` — TPM 2.0, ARM TrustZone, secure boot chain,
+  remote attestation *(TODO: fill in Phase 3)*
 
 ## Escalation
 - Protocol schema changes affecting backend → **architect**
 - Cloud integration (API, message broker) → **backend-dev**
-- Edge processing requirements → **edge-agent**
+- Edge processing (local inference, transcoding, store-and-forward) → **edge-media-agent**
+- Fleet OTA orchestration (metadata signing, staged rollout, attestation) → **firmware-ota-agent**
 - Security review of device auth → **security-agent**
+- Supply chain (signed firmware bundle provenance, SBOMs) → **supply-chain-security-agent**

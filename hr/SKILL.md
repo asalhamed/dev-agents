@@ -7,13 +7,6 @@ description: >
   "team building", "remote team", "contractor", "recruiting", "talent acquisition",
   "employee handbook", "benefits", "equity", "offer letter".
   NOT for product roles (use product-owner) or technical decisions (use tech-lead).
-metadata:
-  openclaw:
-    emoji: 👥
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # HR Agent

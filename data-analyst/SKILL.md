@@ -8,12 +8,6 @@ description: >
   "measure success", "how do we know this works", "data requirements", "reporting".
   Use alongside product-owner to ensure features are measurable from day one.
   NOT for infrastructure metrics (use observability-agent) or database design (use db-migration).
-metadata:
-  openclaw:
-    emoji: 📈
-    requires:
-      skills:
-        - product-owner
 ---
 
 # Data Analyst Agent

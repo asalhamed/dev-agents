@@ -8,15 +8,6 @@ description: >
   "predictive maintenance", "model deployment", "A/B test model", "data labeling",
   "feature engineering", "model monitoring", "drift detection", "MLOps".
   NOT for data pipelines (use data-engineer) or infrastructure (use devops-agent).
-metadata:
-  openclaw:
-    emoji: 🧠
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
 ---
 
 # ML Engineer Agent

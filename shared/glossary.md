@@ -86,5 +86,55 @@ _Add project-specific domain terms below as they are defined in ADRs._
 
 ---
 
+## IoT, Camera, and Edge Ubiquitous Language
+
+The terms below are reserved across all agents that touch devices, cameras, edge nodes,
+or the fleet update plane. Use these names exactly when modeling aggregates, value
+objects, and domain events — do not invent parallel vocabulary.
+
+| Term | Definition |
+|------|-----------|
+| **Device** | A physical unit under our management plane: camera, sensor, gateway, or edge node. Has a unique `DeviceIdentity`. |
+| **DeviceIdentity** | The cryptographic identity of a device, bound to hardware at manufacturing (TPM / secure element / fuse). Value object. |
+| **DeviceClass** | A group of devices sharing hardware, firmware base, and update policy (e.g., `Camera.DoorbellV2`, `Gateway.IndustrialA`). |
+| **EdgeGateway** | A device that aggregates other devices behind it and mediates cloud connectivity. |
+| **EdgeNode** | A compute-capable edge unit running containerized workloads (K3s / MicroK8s). Distinct from a plain `Device` — it runs our code, not just firmware. |
+| **Telemetry** | A stream of timestamped, typed measurements emitted by a device. Always schema-registered (see `schema-registry.md`). |
+| **VideoStream** | A continuous or on-demand sequence of encoded video frames originating from a camera. Identified by `(DeviceId, StreamProfileId)`. |
+| **StreamProfile** | A named encoding/protocol configuration (codec, resolution, bitrate, transport). Value object. |
+| **StreamMetadata** | Typed side-channel data on a `VideoStream` — CV inference results, motion events, operator annotations. |
+| **FirmwareBundle** | An atomic, signed set of firmware artifacts installable on a device class. Identified by `(DeviceClass, Version)`. |
+| **Cohort** | An explicitly defined subset of the fleet that receives a firmware rollout as a unit (see `firmware-ota-agent`). |
+| **AttestationQuote** | A signed report from a device's hardware root of trust proving what it booted. Consumed by `firmware-ota-agent` and `security-agent`. |
+| **Purpose** | The declared, written reason a capture exists. Owned by `privacy-agent`. Every `VideoStream`, biometric event, and derived artifact has one. |
+| **ConsentRecord** | The persisted fact that a data subject consented to a specific `Purpose` under a specific notice version. Owned by `privacy-agent`. |
+| **RetentionWindow** | The time-bound for which an artifact may be kept for a given `Purpose`. Deletion is automatic at expiry unless a legal hold overrides. |
+| **DSAR** | Data-Subject Access Request — a data subject's invocation of access or erasure rights. Has a jurisdictional response deadline. |
+| **RedactionPolicy** | The rule set applied to an artifact before export (face blur, plate blur, voice redaction). Value object. |
+| **SecurityLevel (SL)** | IEC 62443 target security level (1–4) assigned to a zone or conduit. See `compliance-agent`. |
+| **Zone** | IEC 62443 — a group of assets with common security requirements. |
+| **Conduit** | IEC 62443 — a communication path between `Zone`s. |
+| **SBOM** | Software Bill of Materials (CycloneDX / SPDX). Produced at build time; attached to every shipped artifact. |
+| **Provenance** | An in-toto / SLSA attestation describing how an artifact was built. |
+
+### Events (past-tense, domain-level)
+
+| Event | Emitted by | Meaning |
+|-------|------------|---------|
+| `DeviceProvisioned` | `iot-dev` | A device received its long-term identity and trust anchors. |
+| `DeviceAttested` | `iot-dev` + `security-agent` | A device presented a valid attestation quote. |
+| `FirmwareBundlePublished` | `firmware-ota-agent` + `supply-chain-security-agent` | A signed `FirmwareBundle` entered the image repo. |
+| `RolloutStageAdvanced` | `firmware-ota-agent` | A rollout advanced to the next cohort. |
+| `RolloutHalted` | `firmware-ota-agent` | Auto-halt fired due to a health-gate breach. |
+| `FirmwareInstalled` | device → `firmware-ota-agent` | A device reports a completed install. |
+| `FirmwareRolledBack` | device → `firmware-ota-agent` | A device reverted to the previous slot. |
+| `VideoStreamStarted` / `VideoStreamEnded` | `edge-media-agent` | Lifecycle of a `VideoStream`. |
+| `StreamMetadataEmitted` | `edge-media-agent` | CV or motion metadata generated. |
+| `ConsentGranted` / `ConsentRevoked` | `privacy-agent` | Lifecycle of a `ConsentRecord`. |
+| `DSARReceived` / `DSARFulfilled` | `privacy-agent` | Lifecycle of a data-subject request. |
+| `ArtifactDeleted` | `privacy-agent` + `data-engineer` | Verifiable deletion of an artifact class for a subject. |
+
+---
+
 _This glossary is maintained by the architect agent. When a new ADR introduces domain terms,
-they should be added here under "Project-Specific Terms"._
+they should be added here under "Project-Specific Terms" or the IoT/Camera section above._

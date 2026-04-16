@@ -9,13 +9,6 @@ description: >
   Enforces FP principles, DDD layer boundaries, and clean code standards as hard gates.
   Makes exactly one of three decisions: approve, request changes, or escalate to architect.
   NOT for writing code or designing systems — review only.
-metadata:
-  openclaw:
-    emoji: 🔍
-    requires:
-      skills:
-        - architect
-        - tech-lead
 ---
 
 # Reviewer Agent

@@ -7,13 +7,6 @@ description: >
   "product-market fit", "growth metrics", "channel strategy", "market segment",
   "vertical strategy", "geographic expansion", "partnership strategy".
   NOT for execution (use marketing/sales) or product features (use product-owner).
-metadata:
-  openclaw:
-    emoji: 🚀
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # Growth Strategist Agent

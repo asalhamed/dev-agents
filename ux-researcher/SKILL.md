@@ -9,12 +9,6 @@ description: >
   "how do users", "what do users need", "user story mapping".
   Use at the start of any feature to understand the user before designing solutions.
   NOT for visual design (use ui-designer) or implementation (use frontend-dev).
-metadata:
-  openclaw:
-    emoji: 🔬
-    requires:
-      skills:
-        - product-owner
 ---
 
 # UX Researcher Agent

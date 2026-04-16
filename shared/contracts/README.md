@@ -61,7 +61,7 @@ Each agent must:
 2. **Produce complete outputs** — never hand off with missing required fields
 3. **Use exact field names** — field names are part of the contract; don't rename them
 
-## All Contracts (38)
+## All Contracts (42)
 
 ### Core Engineering Contracts
 | Contract | Producer | Consumer(s) | Phase |
@@ -90,8 +90,12 @@ Each agent must:
 |----------|----------|-------------|-------|
 | device-spec.md | iot-dev | qa-agent, reviewer | Domain |
 | protocol-spec.md | iot-dev ↔ backend-dev | architect, tech-lead | Domain |
-| streaming-spec.md | video-streaming | devops-agent, qa-agent, reviewer | Domain |
-| model-spec.md | ml-engineer | edge-agent, backend-dev | Domain |
+| streaming-spec.md | edge-media-agent | devops-agent, qa-agent, reviewer, observability-agent, privacy-agent | Domain |
+| model-spec.md | ml-engineer | edge-media-agent, backend-dev | Domain |
+| ota-plan.md | firmware-ota-agent | tech-lead, reviewer, compliance-agent, observability-agent, security-agent, iot-dev | Domain |
+| privacy-review.md | privacy-agent | tech-lead, reviewer, compliance-agent, legal, product-owner, edge-media-agent, data-engineer | Domain |
+| supply-chain-review.md | supply-chain-security-agent | tech-lead, reviewer, devops-agent, firmware-ota-agent, security-agent, compliance-agent | Domain |
+| schema-registry.md | architect + data-engineer | backend-dev, edge-media-agent, iot-dev, ml-engineer, data-engineer, qa-agent, reviewer, supply-chain-security-agent | Domain |
 
 ### Delivery Lifecycle Contracts
 | Contract | Producer | Consumer(s) | Phase |

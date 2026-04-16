@@ -8,16 +8,6 @@ description: >
   Use when a feature request, bug report, or architect ADR needs to be broken into actionable tasks
   and routed to the right agents. Acts as coordinator between architect decisions and dev execution.
   NOT for design decisions (use architect) or direct implementation (use backend-dev/frontend-dev).
-metadata:
-  openclaw:
-    emoji: 🧑‍💼
-    requires:
-      skills:
-        - backend-dev
-        - frontend-dev
-        - qa-agent
-        - devops-agent
-        - reviewer
 ---
 
 # Tech Lead Agent

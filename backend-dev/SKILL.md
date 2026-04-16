@@ -10,15 +10,6 @@ description: >
   Supports Rust, Scala 3, Scala 2, TypeScript, Go, and other backend stacks.
   Strong focus on functional programming, DDD, and clean code.
   NOT for frontend work, K8s/infra (use devops-agent), or design decisions (use architect).
-metadata:
-  openclaw:
-    emoji: 🔧
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
 ---
 
 # Backend Dev Agent

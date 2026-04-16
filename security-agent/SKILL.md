@@ -9,12 +9,6 @@ description: >
   Use at two points: (1) after architect produces an ADR, to add threat model and security
   requirements; (2) after qa-agent, to perform security scanning before reviewer.
   NOT for implementing security features (use backend-dev) or infrastructure secrets (use devops-agent).
-metadata:
-  openclaw:
-    emoji: 🛡️
-    requires:
-      skills:
-        - architect
 ---
 
 # Security Agent
@@ -169,33 +163,15 @@ In a multi-repo microservices architecture, review these additional concerns:
 # Every service must have a NetworkPolicy — default deny ingress
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
-metadata:
-  name: {service}-policy
-spec:
-  podSelector:
-    matchLabels:
-      app: {service}
-  policyTypes: [Ingress]
-  ingress:
-  - from:
-    - podSelector:
-        matchLabels:
-          app: {allowed-caller}
-    ports:
-    - port: 8080
 ```
 
-### Contract Surface Audit
-- Every endpoint in `platform-contracts/api/*.yaml` is an attack surface
-- Review for: unnecessary exposure (internal-only endpoints made public), excessive data in responses, missing rate limiting, missing authentication
-- Flag any endpoint that returns PII without explicit need
-
-## Escalation Rules
-
-| Situation | Action |
-|-----------|--------|
-| Critical vulnerability found | Block pipeline immediately, escalate to architect |
-| High vulnerability found | REQUEST CHANGES → return to backend-dev or frontend-dev |
-| Medium finding | Non-blocking note in contract |
-| Auth architecture concern (not implementation) | Escalate to architect |
-| Dependency CVE with no fix available | Flag to devops-agent for mitigation strategy |
+## Escalation
+- Artifact signing, SBOMs, SLSA, build provenance → **supply-chain-security-agent**
+- Fleet firmware updates (OTA metadata chain, staged rollout, rollback) →
+  **firmware-ota-agent**
+- Device-side hardware attestation, secure boot chain → **iot-dev**
+  (see `iot-dev/references/hardware-attestation.md`)
+- Operational privacy (DSAR, redaction, biometric consent) → **privacy-agent**
+- Framework compliance (SOC 2, ISO 27001, IEC 62443, GDPR at the framework level) →
+  **compliance-agent**
+- Legal / regulator correspondence → **legal**

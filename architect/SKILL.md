@@ -9,12 +9,6 @@ description: >
   Use when a new feature, service, or integration needs design before implementation begins,
   when reviewer or tech-lead escalates a design concern, or when evaluating trade-offs.
   NOT for bug fixes, trivial changes, or tasks with an existing clear pattern.
-metadata:
-  openclaw:
-    emoji: 🏛️
-    requires:
-      skills:
-        - tech-lead
 ---
 
 # Architect Agent

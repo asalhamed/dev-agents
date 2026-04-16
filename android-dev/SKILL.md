@@ -8,15 +8,6 @@ description: >
   "Android build", "APK", "Play Store", "mobile implementation".
   Supports Kotlin with Jetpack Compose, Coroutines, Hilt/Dagger, Room, CameraX.
   NOT for backend APIs (use backend-dev) or web frontend (use frontend-dev).
-metadata:
-  openclaw:
-    emoji: 📱
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
 ---
 
 # Android Dev Agent

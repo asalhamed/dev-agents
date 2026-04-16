@@ -8,12 +8,6 @@ description: >
   Use after qa-agent to add performance tests, or when a performance concern is raised.
   Supports Rust (criterion, flamegraph), Scala (JMH, async-profiler), TypeScript (autocannon, clinic).
   NOT for infrastructure scaling (use devops-agent) or schema indexing (use db-migration).
-metadata:
-  openclaw:
-    emoji: ⚡
-    requires:
-      skills:
-        - qa-agent
 ---
 
 # Performance Agent

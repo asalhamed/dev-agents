@@ -1,6 +1,7 @@
 workspaces/
-shared/evals/**/outputs/
-shared/evals/**/iteration-*/
+.claude/
+shared/rubrics/**/outputs/
+shared/rubrics/**/iteration-*/
 benchmark.json
 benchmark.md
 feedback.json

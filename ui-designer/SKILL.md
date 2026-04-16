@@ -9,12 +9,6 @@ description: >
   "design the screen", "layout for", "design the form", "mobile design".
   Use after ux-researcher provides UX specs, before frontend-dev implements.
   NOT for user research (use ux-researcher) or code implementation (use frontend-dev).
-metadata:
-  openclaw:
-    emoji: 🎨
-    requires:
-      skills:
-        - ux-researcher
 ---
 
 # UI Designer Agent

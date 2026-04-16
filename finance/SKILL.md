@@ -7,13 +7,6 @@ description: >
   "revenue model", "cost analysis", "margin", "P&L", "cash flow", "pricing strategy",
   "tier pricing", "usage-based pricing".
   NOT for business analysis (use business-analyst) or sales proposals (use sales).
-metadata:
-  openclaw:
-    emoji: 💰
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # Finance Agent

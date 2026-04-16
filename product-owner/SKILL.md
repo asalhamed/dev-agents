@@ -9,9 +9,6 @@ description: >
   "product spec", "feature spec", "requirements document".
   Use at the very start of any feature to define what to build and why.
   NOT for technical design (use architect) or user research (use ux-researcher).
-metadata:
-  openclaw:
-    emoji: 📋
 ---
 
 # Product Owner Agent

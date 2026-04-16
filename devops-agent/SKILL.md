@@ -9,9 +9,6 @@ description: >
   "build pipeline", "container", "infra for", "manifest for".
   Supports Rust and Scala 3 build pipelines specifically.
   NOT for application code changes — use backend-dev or frontend-dev.
-metadata:
-  openclaw:
-    emoji: 🚀
 ---
 
 # DevOps Agent
@@ -204,26 +201,6 @@ spec:
 # ✅ Use external-secrets operator
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
-metadata:
-  name: db-credentials
-spec:
-  refreshInterval: 1h
-  secretStoreRef:
-    name: vault-backend
-    kind: ClusterSecretStore
-  target:
-    name: db-credentials
-  data:
-    - secretKey: password
-      remoteRef:
-        key: services/order-service
-        property: db_password
-
-# ❌ Never do this:
-# kubectl create secret generic db-creds --from-literal=password=mypassword
-# (not reproducible, not in version control, not auditable)
-```
-
 ---
 
 ## Workflow

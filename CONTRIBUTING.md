@@ -7,9 +7,10 @@
 ```
 new-agent/
 ├── SKILL.md
-├── references/ # optional — stack-specific or domain-specific docs
-└── evals/ # at least 2 eval files
+└── references/ # optional — stack-specific or domain-specific docs
 ```
+
+Rubric cases live centrally under `shared/rubrics/<agent>/`, not in the agent directory.
 
 2. **Write the SKILL.md** with:
    - YAML frontmatter: `name` (required), `description` (required, ~100 words with trigger keywords)
@@ -34,7 +35,7 @@ new-agent/
    - Follow the format: Required Fields → Validation checklist → Example
    - Update `shared/contracts/README.md` with the new contract chain entry
 
-5. **Write at least 2 evals** in `shared/evals/new-agent/`:
+5. **Write at least 2 rubric cases** in `shared/rubrics/new-agent/`:
    - One happy-path eval testing core behavior
    - One edge-case or escalation eval
    - Follow the format: Input → Expected Behavior → Pass Criteria → Fail Criteria

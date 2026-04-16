@@ -8,13 +8,6 @@ description: >
   "intellectual property", "patent", "license", "compliance", "regulatory",
   "SOC2", "ISO 27001", "HIPAA", "indemnification", "warranty".
   NOT for technical compliance (use compliance-agent) or business strategy (use growth-strategist).
-metadata:
-  openclaw:
-    emoji: ⚖️
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # Legal Agent

@@ -9,9 +9,6 @@ description: >
   Use after implementation is complete and before the reviewer.
   Supports Rust, Scala 3/2, TypeScript, and other stacks.
   Enforces FP testing: test behavior not implementation, pure unit tests by default.
-metadata:
-  openclaw:
-    emoji: 🧪
 ---
 
 # QA Agent

@@ -9,9 +9,6 @@ description: >
   Supports Rust/Leptos, Vue/Nuxt, React/Next.js, Svelte, and plain HTML.
   Strong focus on functional components, unidirectional data flow, and pure rendering.
   NOT for backend APIs, infrastructure, or design decisions.
-metadata:
-  openclaw:
-    emoji: 🎨
 ---
 
 # Frontend Dev Agent

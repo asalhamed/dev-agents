@@ -8,15 +8,6 @@ description: >
   "alert history", "trend analysis", "data visualization", "self-service analytics".
   Supports dbt, Grafana, Metabase, Superset, and custom dashboard components.
   NOT for data pipelines (use data-engineer) or UI components (use frontend-dev).
-metadata:
-  openclaw:
-    emoji: 📊
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
 ---
 
 # Analytics Engineer Agent

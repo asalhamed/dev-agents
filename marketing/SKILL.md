@@ -7,13 +7,6 @@ description: >
   "value proposition", "case study", "whitepaper", "webinar", "press release",
   "product launch", "brand voice", "competitive positioning", "lead generation".
   NOT for product decisions (use product-owner) or sales execution (use sales).
-metadata:
-  openclaw:
-    emoji: 📣
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # Marketing Agent

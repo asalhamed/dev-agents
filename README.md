@@ -268,48 +268,39 @@ dev-agents/
 │   │   ├── observability-audit.md    ← observability-agent → reviewer
 │   │   ├── reviewer-decision.md      ← reviewer → tech-lead
 │   │   └── docs-summary.md           ← docs-agent → tech-lead
-│   └── evals/                         ← detailed markdown eval cases (all 18 agents)
+│   └── rubrics/                         ← detailed markdown rubric cases (per agent)
 │
 │── Business Division
 ├── product-owner/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 ├── business-analyst/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 ├── data-analyst/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │
 │── Design Division
 ├── ux-researcher/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 ├── ui-designer/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 ├── api-designer/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │
 │── Engineering Division
 ├── architect/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │       └── example-adr.md
 ├── tech-lead/
 │   ├── SKILL.md
-│   └── evals/evals.json
 ├── backend-dev/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │       ├── rust-patterns.md
 │       ├── scala3-patterns.md
@@ -317,41 +308,34 @@ dev-agents/
 │       └── typescript-patterns.md
 ├── frontend-dev/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │       ├── leptos-patterns.md
 │       └── a11y-standards.md
 ├── qa-agent/
 │   ├── SKILL.md
-│   └── evals/evals.json
 ├── devops-agent/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   ├── scripts/
 │   │   └── validate_manifests.sh
 │   └── references/
 │       └── observability.md
 ├── reviewer/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── scripts/
 │       └── automated_gates.sh
 ├── security-agent/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │       ├── owasp-top10.md
 │       ├── auth-patterns.md
 │       └── dependency-scanning.md
 ├── db-migration/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │       ├── migration-strategies.md
 │       └── migration-tools.md
 ├── perf-agent/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │       ├── rust-perf.md
 │       ├── scala-perf.md
@@ -360,13 +344,11 @@ dev-agents/
 │── Operations Division
 ├── observability-agent/
 │   ├── SKILL.md
-│   ├── evals/evals.json
 │   └── references/
 │       ├── slo-template.md
 │       └── runbook-template.md
 └── docs-agent/
     ├── SKILL.md
-    ├── evals/evals.json
     └── references/
         ├── openapi-template.md
         ├── changelog-format.md

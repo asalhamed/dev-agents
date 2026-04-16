@@ -9,15 +9,6 @@ description: >
   "object storage", "data catalog", "schema registry".
   Supports Apache Kafka, Flink, Spark, dbt, Airflow, and cloud-native services.
   NOT for ML models (use ml-engineer) or analytics dashboards (use analytics-engineer).
-metadata:
-  openclaw:
-    emoji: 🔧
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
 ---
 
 # Data Engineer Agent

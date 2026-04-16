@@ -8,12 +8,6 @@ description: >
   "backward compatible", "zero-downtime migration", "event store schema", "CQRS projection".
   Use after architect defines schema changes in an ADR and before backend-dev implements.
   NOT for query optimization (use perf-agent) or infrastructure provisioning (use devops-agent).
-metadata:
-  openclaw:
-    emoji: 🗄️
-    requires:
-      skills:
-        - architect
 ---
 
 # Database Migration Agent

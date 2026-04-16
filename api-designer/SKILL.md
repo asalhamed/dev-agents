@@ -9,12 +9,6 @@ description: >
   "breaking API change", "API review", "how should the API look".
   Use after architect defines domain contracts, before backend-dev implements endpoints.
   NOT for domain modeling (use architect) or implementation (use backend-dev).
-metadata:
-  openclaw:
-    emoji: 📐
-    requires:
-      skills:
-        - architect
 ---
 
 # API Designer Agent

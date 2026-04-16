@@ -1,24 +1,42 @@
 # Streaming Specification
 
-**Producer:** video-streaming
-**Consumer(s):** devops-agent, qa-agent, reviewer
+**Producer:** edge-media-agent
+**Consumer(s):** devops-agent, qa-agent, reviewer, observability-agent, privacy-agent
 
 ## Required Fields
 
-- **Input source** — RTSP URL format, camera type/model, resolution, framerate
-- **Output protocols** — WebRTC, HLS, RTMP (with target use case for each)
-- **Transcoding pipeline** — tools (GStreamer/FFmpeg), codec, profile, bitrate ladder
-- **Recording strategy** — storage location, segment duration, retention policy
-- **Latency target** — end-to-end camera-to-viewer latency requirement
-- **Bandwidth requirements** — per-stream ingest and egress bandwidth budget
-- **Error handling** — camera disconnect behavior, reconnect strategy, failover
+- **Input source** — RTSP / ONVIF / SRT / WebRTC URL format, camera model, resolution,
+  framerate, color depth
+- **Output protocols** — WebRTC, HLS, LL-HLS, DASH, RTMP, SRT (with target use case per leg)
+- **Transcoding pipeline** — tools (GStreamer / FFmpeg / custom), codec, profile, hardware
+  acceleration path, **bitrate ladder**
+- **Keyframe cadence** — interval in seconds, chosen for seekability vs. efficiency
+- **Recording strategy** — storage location, segment duration, retention per tier
+- **Latency SLO** — target and maximum glass-to-glass latency; SLI definition;
+  instrumentation points (capture timestamp → encode → egress → viewer render)
+- **Bitrate envelope** — min / expected / peak bitrate per stream; CBR vs VBR; burst budget
+- **Jitter budget** — tolerable jitter before ABR step-down; measurement window
+- **Bandwidth requirements** — per-stream ingest and egress budget + aggregate for the site
+- **Error handling** — camera disconnect behavior, reconnect strategy, failover, graceful
+  degradation under packet loss (1 %, 5 %, 10 %) and under GPU/CPU saturation
+- **Privacy fields** — declared `Purpose`, applicable `RetentionWindow` per tier, applicable
+  `RedactionPolicy` for export, link to the `privacy-review.md` contract (owned by
+  `privacy-agent`)
 
 ## Validation Checklist
 
-- [ ] Latency target defined and measurable (e.g., <1s for live, <10s for HLS)
-- [ ] Recording retention policy specified (days, auto-delete, tiered storage)
-- [ ] Camera disconnect/reconnect handled (automatic, with backoff)
-- [ ] Bandwidth budget documented (per camera and aggregate)
+- [ ] Latency SLO is a concrete number with a defined SLI and instrumentation points
+- [ ] Keyframe cadence stated and matches the use case (seek-friendly vs. bandwidth-efficient)
+- [ ] Bitrate envelope covers min / expected / peak; burst budget stated
+- [ ] Jitter budget stated with a measurement window
+- [ ] Recording retention policy specified per tier; deletion is automated, not manual
+- [ ] Camera disconnect/reconnect handled (automatic, with bounded backoff)
+- [ ] Bandwidth budget documented per stream and aggregate, including CV metadata egress
+- [ ] Graceful degradation under packet loss and resource saturation is specified
+- [ ] `Purpose` is declared for every captured stream; cross-referenced to
+  `privacy-review.md`
+- [ ] If biometric processing occurs, consent-bypass analysis is completed in the
+  threat-model contract
 
 ## Example (valid)
 

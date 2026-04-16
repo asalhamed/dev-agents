@@ -9,12 +9,6 @@ description: >
   "is this observable", "can we debug this in production".
   Use after implementation to verify the code is properly instrumented.
   NOT for setting up infra (use devops-agent) or writing application code (use backend-dev).
-metadata:
-  openclaw:
-    emoji: 📡
-    requires:
-      skills:
-        - backend-dev
 ---
 
 # Observability Agent

@@ -7,13 +7,6 @@ description: >
   "technology partner", "ecosystem", "marketplace", "integration",
   "camera vendor", "sensor vendor", "connectivity partner", "system integrator".
   NOT for sales (use sales) or legal contracts (use legal).
-metadata:
-  openclaw:
-    emoji: 🤝
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # Partnerships Agent

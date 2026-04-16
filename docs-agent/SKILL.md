@@ -9,12 +9,6 @@ description: >
   "how to guide", "architecture diagram", "system overview".
   Use after implementation is complete and approved, to generate/update documentation.
   NOT for code comments (handled by dev agents) or ADR writing (use architect).
-metadata:
-  openclaw:
-    emoji: 📝
-    requires:
-      skills:
-        - tech-lead
 ---
 
 # Documentation Agent

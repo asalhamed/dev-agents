@@ -7,13 +7,6 @@ description: >
   "adoption", "renewal", "expansion", "customer feedback", "feature request triage",
   "SLA management", "quarterly business review".
   NOT for sales (use sales) or product decisions (use product-owner).
-metadata:
-  openclaw:
-    emoji: 🤝
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # Customer Success Agent

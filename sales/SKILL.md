@@ -7,13 +7,6 @@ description: >
   "customer acquisition", "sales pipeline", "CRM", "outreach", "cold email",
   "discovery call", "sales deck", "competitive analysis", "objection handling".
   NOT for marketing content (use marketing) or customer retention (use customer-success).
-metadata:
-  openclaw:
-    emoji: 💼
-    requires:
-      tools:
-        - read
-        - write
 ---
 
 # Sales Agent

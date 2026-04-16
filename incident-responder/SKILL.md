@@ -7,15 +7,6 @@ description: >
   "status page", "customer notification", "blameless postmortem", "incident commander",
   "war room".
   NOT for monitoring setup (use observability-agent) or code fixes (use backend-dev).
-metadata:
-  openclaw:
-    emoji: 🚨
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
 ---
 
 # Incident Responder Agent

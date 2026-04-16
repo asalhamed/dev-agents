@@ -1,23 +1,19 @@
 ---
 name: compliance-agent
 description: >
-  Implement and audit technical compliance controls for SOC2, ISO 27001, GDPR,
-  and industry-specific regulations.
-  Trigger keywords: "SOC2", "ISO 27001", "GDPR audit", "compliance control",
-  "access logging", "audit trail", "data retention", "encryption at rest",
-  "encryption in transit", "key management", "data classification",
-  "compliance evidence", "penetration test", "vulnerability management",
-  "risk assessment", "compliance gap analysis".
-  NOT for legal advice (use legal) or security scanning (use security-agent).
-metadata:
-  openclaw:
-    emoji: 🔒
-    requires:
-      tools:
-        - exec
-        - read
-        - edit
-        - write
+  Implement and audit technical compliance controls and produce auditor-ready evidence
+  for SOC 2, ISO 27001, GDPR, HIPAA, IEC 62443 (industrial control systems), NIST 8259,
+  ETSI EN 303 645, and similar framework-level obligations.
+  Trigger keywords: "SOC2", "SOC 2", "ISO 27001", "HIPAA", "GDPR audit", "IEC 62443",
+  "NIST 8259", "ETSI 303 645", "compliance control", "control mapping", "access logging",
+  "audit trail", "data retention policy", "encryption at rest", "encryption in transit",
+  "key management policy", "data classification", "compliance evidence", "penetration
+  test scope", "vulnerability management program", "risk assessment", "compliance gap
+  analysis", "audit readiness", "regulator inquiry", "framework mapping".
+  NOT for legal advice or regulator correspondence (use legal), code-level security
+  scanning (use security-agent), operational privacy runbooks like DSAR handling, face
+  redaction, or biometric consent (use privacy-agent), or supply-chain signing / SBOMs
+  (use supply-chain-security-agent).
 ---
 
 # Compliance Agent
@@ -75,14 +71,30 @@ For each gap:
 - **When** — deadline based on risk and audit timeline
 - **Evidence** — what artifact proves completion
 
-### 5. GDPR-Specific
-If any data involves EU residents or video of individuals:
-- **Map data flows** — where does personal data enter, process, store, exit?
-- **Identify personal data** — including video of identifiable individuals
-- **Verify consent** — mechanism exists and is recorded
-- **Right to erasure** — deletion request can be fulfilled technically
+### 5. GDPR — Framework-Level Obligations
+This agent owns the *framework* view (what must be demonstrable to an auditor or
+regulator). **Operational privacy workflows** — DSAR execution, face redaction runbooks,
+biometric consent capture, camera signage, DPIA authoring — are owned by
+**`privacy-agent`**. Coordinate, don't duplicate.
+
+- **Map data flows** — where personal data (incl. video of identifiable individuals)
+  enters, processes, stores, exits
+- **Verify that consent records exist** (schema owned by `privacy-agent`) and are auditable
+- **Right to erasure** — confirm `privacy-agent`'s DSAR flow meets the jurisdictional
+  deadline and is end-to-end tested
 - **DPA** — agreements with all sub-processors
-- **DPIA** — Data Protection Impact Assessment for high-risk processing (Article 35)
+- **DPIA gate** — require one from `privacy-agent` for any high-risk processing
+  (Article 35)
+
+### 5b. IEC 62443 — Industrial / Utility Customers
+If any customer is in scope for IEC 62443 (utilities, manufacturing, water, energy,
+transport):
+- Identify the required **Security Level target (SL-T 1–4)** per zone and conduit
+- Map our controls to the IEC 62443-3-3 system requirements
+- Document zones (IT / OT boundaries), conduits, and the security level of each
+- Coordinate with `firmware-ota-agent` on maintenance (SR 7 — resource availability,
+  SR 3 — system integrity)
+- See `references/iec-62443.md`
 
 ### 6. Produce Compliance Audit
 Write `shared/contracts/compliance-audit.md` with:
@@ -107,12 +119,18 @@ Before marking complete, verify:
 `shared/contracts/compliance-audit.md`
 
 ## References
-- `references/soc2-controls.md` — SOC2 Type II control mapping
-- `references/gdpr-technical.md` — GDPR technical requirements and DPIA guidance
-- `references/iot-security-standards.md` — IoT-specific security and compliance standards
+- `references/soc2-controls.md` — SOC 2 Type II control mapping
+- `references/gdpr-technical.md` — GDPR framework-level technical requirements
+- `references/iot-security-standards.md` — NIST 8259, ETSI EN 303 645 mappings
+- `references/iec-62443.md` — IEC 62443 zone / conduit model, SL-T targets, evidence
+  checklist *(TODO: fill in Phase 3)*
 
 ## Escalation
-- Legal interpretation of regulations → **legal**
+- Legal interpretation, regulator correspondence → **legal**
+- Operational privacy (DSAR, redaction, consent capture, DPIA authoring) → **privacy-agent**
 - Security vulnerabilities found during audit → **security-agent**
+- Supply-chain signing, SBOMs, SLSA evidence → **supply-chain-security-agent**
+- Fleet OTA compliance (NIST SP 800-193, IEC 62443 maintenance) → **firmware-ota-agent**
+- Edge / video pipeline compliance evidence → **edge-media-agent**
 - Technical remediation implementation → relevant dev agent
 - Infrastructure changes needed → **devops-agent**
